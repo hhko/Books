@@ -42,46 +42,20 @@ namespace DependencyInjectionSpec
             Assert.IsType<FakeService>(service);
         }
 
-        //
-        // Transient는 개별 인스턴스로 의존성을 주입한다.
-        // 
         [Fact]
-        public void ReturnDifferentInstances_PerResolution_ForTransientServices()
+        public void ServiceInstance_CanBeResolved()
         {
             // Arrange
             var collection = new TestServiceCollection();
-            collection.AddTransient(typeof(IFakeService), typeof(FakeService));
+            var instance = new FakeService();
+            collection.AddSingleton(typeof(IFakeServiceInstance), instance);
             var provider = CreateServiceProvider(collection);
 
             // Act
-            var service1 = provider.GetService<IFakeService>();
-            var service2 = provider.GetService<IFakeService>();
+            var service = provider.GetService<IFakeServiceInstance>();
 
             // Assert
-            Assert.IsType<FakeService>(service1);
-            Assert.IsType<FakeService>(service2);
-            Assert.NotSame(service1, service2);
-        }
-
-        //
-        // Singleton는 인스턴스 하나로 의존성을 주입한다.
-        //
-        [Fact]
-        public void ReturnSameInstances_PerResolution_ForSingletons()
-        {
-            // Arrange
-            var collection = new TestServiceCollection();
-            collection.AddSingleton(typeof(IFakeService), typeof(FakeService));
-            var provider = CreateServiceProvider(collection);
-
-            // Act
-            var service1 = provider.GetService<IFakeService>();
-            var service2 = provider.GetService<IFakeService>();
-
-            // Assert
-            Assert.IsType<FakeService>(service1);
-            Assert.IsType<FakeService>(service2);
-            Assert.Same(service1, service2);
+            Assert.Same(instance, service);
         }
     }
 }
