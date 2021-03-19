@@ -13,8 +13,11 @@ namespace Step_01_Helloworld
             services.AddMediatR(typeof(Program));
             var provider = services.BuildServiceProvider();
 
-            var mediator = provider.GetService<IMediator>();
-            var pong = await mediator.Send(new Ping { Message = "Ping" });
+            //
+            // public interface IMediator : ISender, IPublisher
+            //
+            var sender = provider.GetService<ISender>();
+            var pong = await sender.Send(new Ping { Message = "Ping" });
 
             Console.WriteLine($"{pong.Message}");
         }
