@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +19,7 @@ namespace Step_05_Factory
             // Factory로 객체 생성하기 
             //
             // IServiceCollection AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory)
+            // IServiceCollection AddTransient<TService, TImplementation>(this IServiceCollection services, Func<IServiceProvider, TImplementation> implementationFactory)
             services.AddTransient<IGreeting>(sp =>
                 new CompositeGreeting(new IGreeting[]
                 {

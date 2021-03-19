@@ -12,9 +12,10 @@ namespace Step_03_DuplicatedTryAdd
             services.AddTransient<IGreeting, Hello>();
 
             //
-            // 이미 등록되어 있으면 추가하지 않는다.
+            // "TryAdd..." 이미 등록된 "서비스"가 있으면 추가하지 않는다.
             //
             services.TryAddTransient<IGreeting, Hi>();
+
             services.AddTransient<ConsoleApp>();
             var provider = services.BuildServiceProvider();
 

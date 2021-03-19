@@ -3,22 +3,49 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1433
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_01_HelloDI", "Step_01_HelloDI\Step_01_HelloDI.csproj", "{7ECA8D7B-AF78-449E-8FF6-CA994D9037AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_01_Add", "Step_01_HelloDI\Step_01_Add.csproj", "{7ECA8D7B-AF78-449E-8FF6-CA994D9037AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_02_Add", "Step_02_Add\Step_02_Add.csproj", "{7E0629DF-49BE-4700-B6B7-7F94B2AE6787}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_02_ServiceDescriptor", "Step_02_Add\Step_02_ServiceDescriptor.csproj", "{7E0629DF-49BE-4700-B6B7-7F94B2AE6787}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_03_TryAdd", "Step_03_TryAdd\Step_03_TryAdd.csproj", "{272F1129-C97B-4E93-BD8A-371CD561C313}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_04_TryAddEnumerable", "Step_04_TryAddEnumerable\Step_04_TryAddEnumerable.csproj", "{D76CCFB1-C15C-490E-AE36-BFE3F20F0D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Step_05_Factory", "Step_05_Factory\Step_05_Factory.csproj", "{E3AF17C6-FB69-454F-B787-A227B013DB4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_05_Factory", "Step_05_Factory\Step_05_Factory.csproj", "{E3AF17C6-FB69-454F-B787-A227B013DB4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Step_06_Builder", "Step_06_Builder\Step_06_Builder.csproj", "{1EA643F3-50BB-4D5D-B247-993DE752F57A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Step_06_Builder", "Step_06_Builder\Step_06_Builder.csproj", "{1EA643F3-50BB-4D5D-B247-993DE752F57A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D43FEBDC-D73E-41D0-B0BB-B42C21636FD6}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part1.Overview", "Part1.Overview", "{56F80D79-D776-440F-9736-987E622A7237}"
+	ProjectSection(SolutionItems) = preProject
+		Part1.Overview\README.md = Part1.Overview\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part2.API", "Part2.API", "{6A1D2DCB-1C07-47C5-BBF5-811C6269CD81}"
+	ProjectSection(SolutionItems) = preProject
+		Part2.API\README.md = Part2.API\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part3.Example", "Part3.Example", "{D71ADF34-1A89-4EDE-84FD-A8F525365AF0}"
+	ProjectSection(SolutionItems) = preProject
+		Part3.Example\README.md = Part3.Example\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part4.AdvExample", "Part4.AdvExample", "{007D4C43-23AE-4B6F-B8FE-E2D899E8DA1B}"
+	ProjectSection(SolutionItems) = preProject
+		Part4.AdvExample\README.md = Part4.AdvExample\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part5.Integration", "Part5.Integration", "{CAAAB966-B6B4-40B1-A785-A7AF53C96593}"
+	ProjectSection(SolutionItems) = preProject
+		Part5.Integration\README.md = Part5.Integration\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectionSpec", "Part3.Example\DependencyInjectionSpec\DependencyInjectionSpec.csproj", "{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,9 +77,22 @@ Global
 		{1EA643F3-50BB-4D5D-B247-993DE752F57A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EA643F3-50BB-4D5D-B247-993DE752F57A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EA643F3-50BB-4D5D-B247-993DE752F57A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7ECA8D7B-AF78-449E-8FF6-CA994D9037AD} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{7E0629DF-49BE-4700-B6B7-7F94B2AE6787} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{272F1129-C97B-4E93-BD8A-371CD561C313} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{D76CCFB1-C15C-490E-AE36-BFE3F20F0D6C} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{E3AF17C6-FB69-454F-B787-A227B013DB4D} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{1EA643F3-50BB-4D5D-B247-993DE752F57A} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
+		{B52BFE7E-66C7-4C6B-8BD9-C7B3241E227D} = {D71ADF34-1A89-4EDE-84FD-A8F525365AF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02185646-9A3C-4C7C-8918-1E7809597D3A}

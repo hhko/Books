@@ -12,13 +12,15 @@ namespace Step_04_TryAddEnumableDuplicatedDIs
             var services = new ServiceCollection();
 
             // 
-            // 인터페이스 : 구현 = 1 : N
+            // "서비스 : 구현 = 1 : N" 관계를 등록한다.
+            // void TryAddEnumerable(this IServiceCollection services, IEnumerable<ServiceDescriptor> descriptors)
             //
             services.TryAddEnumerable(new[]
             {
                 ServiceDescriptor.Transient<IGreeting, Hello>(),
                 ServiceDescriptor.Transient<IGreeting, Hi>()
             });
+
             services.AddTransient<ConsoleApp>();
             var provider = services.BuildServiceProvider();
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 
 namespace Step_02_Duplicated
@@ -8,12 +9,14 @@ namespace Step_02_Duplicated
         static void Main(string[] args)
         {
             var services = new ServiceCollection();
-            services.AddTransient<IGreeting, Hello>();
 
+            // 
+            // ServiceDescriptor로 "서비스"와 "구현"을 등록한다.
             //
-            // 가장 마지막에 추가한 것이 우선순위가 높다.
+            // IServiceCollection Add(this IServiceCollection collection, ServiceDescriptor descriptor);
+            // IServiceCollection Add(this IServiceCollection collection, IEnumerable<ServiceDescriptor> descriptors);
             //
-            services.AddTransient<IGreeting, Hi>();     
+            services.Add(ServiceDescriptor.Transient<IGreeting, Hello>());
 
             services.AddTransient<ConsoleApp>();
             var provider = services.BuildServiceProvider();
