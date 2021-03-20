@@ -7,7 +7,7 @@ using Xunit;
 
 namespace DependencyInjectionSpec
 {
-    public class LifetimeScopeSpec
+    public class LifetimeScope
     {
         private ServiceProvider CreateServiceProvider(IServiceCollection services)
         {
@@ -75,6 +75,78 @@ namespace DependencyInjectionSpec
             Assert.Same(instance1.ServiceProvider, instance2.ServiceProvider);
             Assert.NotSame(instance1.ServiceProvider, scopedSp1);   // Scope의 ServiceProvider는 아니다.
             Assert.NotSame(instance2.ServiceProvider, scopedSp2);
+        }
+
+        //
+        // Scope은 Singleton이다.
+        //
+        [Fact]
+        public void ScopedServiceCanBeResolved()
+        {
+            // Arrange
+            var collection = new TestServiceCollection();
+            collection.AddScoped<IFakeScopedService, FakeService>();
+            var provider = CreateServiceProvider(collection);
+
+            // Act
+            using (var scope = provider.CreateScope())
+            {
+                var providerScopedService = provider.GetService<IFakeScopedService>();
+                var scopedService1 = scope.ServiceProvider.GetService<IFakeScopedService>();
+                var scopedService2 = scope.ServiceProvider.GetService<IFakeScopedService>();
+
+                // Assert
+                Assert.NotSame(providerScopedService, scopedService1);
+                Assert.Same(scopedService1, scopedService2);
+            }
+        }
+
+        //
+        // Scope은 Scope 단위의 Singleton이다.
+        //
+        [Fact]
+        public void NestedScopedService_CanBeResolved()
+        {
+            // Arrange
+            var collection = new TestServiceCollection();
+            collection.AddScoped<IFakeScopedService, FakeService>();
+            var provider = CreateServiceProvider(collection);
+
+            // Act
+            using (var outerScope = provider.CreateScope())
+            using (var innerScope = outerScope.ServiceProvider.CreateScope())
+            {
+                var outerScopedService = outerScope.ServiceProvider.GetService<IFakeScopedService>();
+                var innerScopedService = innerScope.ServiceProvider.GetService<IFakeScopedService>();
+
+                // Assert
+                Assert.NotNull(outerScopedService);
+                Assert.NotNull(innerScopedService);
+                Assert.NotSame(outerScopedService, innerScopedService);
+            }
+        }
+
+        //
+        // Scope은 Scope 단위의 Singleton이다.
+        //
+        [Fact]
+        public void NestedScopedService_CanBeResolved_WithNoFallbackProvider()
+        {
+            // Arrange
+            var collection = new TestServiceCollection();
+            collection.AddScoped<IFakeScopedService, FakeService>();
+            var provider = CreateServiceProvider(collection);
+
+            // Act
+            using (var outerScope = provider.CreateScope())
+            using (var innerScope = outerScope.ServiceProvider.CreateScope())
+            {
+                var outerScopedService = outerScope.ServiceProvider.GetService<IFakeScopedService>();
+                var innerScopedService = innerScope.ServiceProvider.GetService<IFakeScopedService>();
+
+                // Assert
+                Assert.NotSame(outerScopedService, innerScopedService);
+            }
         }
     }
 }

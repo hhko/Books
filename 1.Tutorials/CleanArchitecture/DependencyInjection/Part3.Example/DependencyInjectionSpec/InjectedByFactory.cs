@@ -43,7 +43,5 @@ namespace DependencyInjectionSpec
             Assert.NotNull(service.FakeService);
             Assert.IsType<FakeService>(service.FakeService);
         }
-
-        
     }
 }

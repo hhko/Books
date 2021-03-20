@@ -6,7 +6,7 @@ namespace DependencyInjectionSpec.Fakes
 {
     public class FakeService : IFakeEveryService, IDisposable
     {
-        //public PocoClass Value { get; set; }
+        public PocoClass Value { get; set; }
 
         public bool Disposed { get; private set; }
 

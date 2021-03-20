@@ -9,8 +9,8 @@ namespace DependencyInjectionSpec.Fakes
         IFakeMultipleService,
         IFakeScopedService,
         IFakeServiceInstance,
-        IFakeSingletonService
-        //IFakeOpenGenericService<PocoClass>
+        IFakeSingletonService,
+        IFakeOpenGenericService<PocoClass>
     {
     }
 }
