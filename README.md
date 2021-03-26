@@ -17,6 +17,7 @@
    - Observability
      - [NLog](./1.Tutorials/Observability/NLog)
      - [Serilog](./1.Tutorials/Observability/Serilog)
+       - [Serilog Workshop](./1.Tutorials/Observability/SerilogWorkshop)
    - Clean Architecture
      - [Microsoft.Extensions.DependencyInjection](./1.Tutorials/CleanArchitecture/ServiceCollection)
      - [MediatR](./1.Tutorials/CleanArchitecture/MediatR)
