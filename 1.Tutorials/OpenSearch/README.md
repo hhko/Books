@@ -92,3 +92,6 @@ networks:
 ### 참고 사이트
 - [opensearch_security 없는 OpenSearch](https://docs-beta.opensearch.org/docs/opensearch/install/docker/#customize-the-docker-image)
 - [opensearch_security 없는 OpenSearch-dashboards](https://docs-beta.opensearch.org/docs/security/configuration/disable/#remove-opensearch-dashboards-plugin)
+- https://blog.aaronroh.org/118
+- https://jonnung.dev/docker/2020/02/16/docker_network/
+- https://bluese05.tistory.com/15
