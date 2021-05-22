@@ -289,3 +289,29 @@
 ---
 1. Docker Host 네트워크
 1. 원격에서 WSL2 접근
+---
+1. 모든 개발 환겨이 구성된 도커 이미지
+
+```
+Error response from daemon: i/o timeout
+
+1. Open "Window Security"
+2. Open "App & Browser control"
+3. Click "Exploit protection settings" at the bottom
+4. Switch to "Program settings" tab
+5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
+6. Click "Edit"
+7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
+8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
+9. Start vmcompute from powershell "net start vmcompute"
+
+1. Open "Window Security"
+2. Open "App & Browser control"
+3. Click "Exploit protection settings" at the bottom
+4. Switch to "Program settings" tab
+5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
+6. Click "Edit"
+7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
+8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
+9. Start vmcompute from powershell "net start vmcompute"
+```
