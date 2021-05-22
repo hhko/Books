@@ -331,6 +331,8 @@ Flags:
 - [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
 - https://coding-groot.tistory.com/category/Git
 - https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
+- [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
+  `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
 
 
 ## TODO
