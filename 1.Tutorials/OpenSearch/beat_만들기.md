@@ -1,9 +1,9 @@
 ## 1. libbeat 이미지 만들기
-1. Tag v7.9.1 Dockerfile 파일 다운로드
-   - [Dockerfile](https://github.com/elastic/beats/blob/v7.9.1/libbeat/Dockerfile)
-3. Dockerfile 만들기
+1. 7.10 브랜치 Dockerfile 다운로드
+   - https://github.com/elastic/beats/blob/7.10/libbeat/Dockerfile
+1. Dockerfile 만들기
    ```dockerfile
-   FROM golang:1.14.7
+   FROM golang:1.14.12
    
    RUN \
        apt-get update \
@@ -15,21 +15,21 @@
             python3-venv \
          && rm -rf /var/lib/apt/lists/*
    
-   ENV PYTHON_ENV=/tmp/python-env
-   
    RUN pip3 install --upgrade pip==20.1.1
    RUN pip3 install --upgrade setuptools==47.3.2
    RUN pip3 install --upgrade docker-compose==1.23.2
-
+   
    # Libbeat specific
    RUN mkdir -p /etc/pki/tls/certs
    ```
-1. libbeat 이미지 만들기
-   ```shell
-   docker image build -t libbeat:7.9.1 .
+1. 이미지 만들기
+   ```
+   docker image build -t libbeat:7.10 .
+   
+   # 이미지 확인
    docker image ls
-   REPOSITORY                                   TAG       IMAGE ID       CREATED         SIZE
-   libbeat                                      7.9.1     e9e7183b2bc1   8 seconds ago   861MB
+   REPOSITORY                                   TAG       IMAGE ID       CREATED              SIZE
+   libbeat                                      7.10      7950121cdbf0   About a minute ago   862MB
    ```
 1. 이미지 빌드 과정 에러
    - apt-get update 에러
@@ -62,7 +62,7 @@
 ## 2. libbeat 컨테이너 개발환경 
 1. 컨테이너 실행
    ```
-   docker container run -itd --name libbeat libbeat:7.9.1
+   docker container run -itd --name libbeat libbeat:7.10
    ```
    - `-itd` : 백그라운드로 실행하면서 대화형 쉘을 제공한다(실행 후에 shell 접속을 허용하기 위해서는 it 옵션이 필요한다). 
      - `i` : --interactive, Keep STDIN open even if not attached
@@ -89,6 +89,10 @@
      root@60737c2bf952:/go# cd $GOPATH/src/github.com/magefile/mage
      root@60737c2bf952:/go# go run bootstrap.go                         # 소스 빌드
      root@60737c2bf952:/go# ls $GOPATH/bin -al                          # 소스 빌드 확인
+     total 4756
+     drwxrwxrwx 1 root root    4096 May 22 12:25 .
+     drwxrwxrwx 1 root root    4096 Nov 19  2020 ..
+     -rwxr-xr-x 1 root root 4856298 May 22 12:25 mage
      ```
    - TODO : Go Modules 기반 설치(경로 등 확인 필요) 
      ```
@@ -100,13 +104,6 @@
    - 참고 사이트
      - [Mage GitHub](https://github.com/magefile/mage)
      - Mage : 
-1. TODO? dep
-   ```
-   go get github.com/golang/dep/cmd/dep
-   go install github.com/golang/dep/cmd/dep
-   빌드 확인
-   ```
-   - dep : 
 1. Oracle Driver 설치
    ```
    # alien 패키지 설치
@@ -146,6 +143,14 @@
    root@60737c2bf952:/go# go get github.com/godror/godror                     # 소스 다운로드 및 빌드
    root@60737c2bf952:/go# ls $GOPATH/pkg/linux_amd64/github.com/godror -al    # 소스 빌드 확인
    ```
+1. Beats 소스 받기
+   ```
+   root@60737c2bf952:/go# git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10
+   
+   root@60737c2bf952:/go# cd $GOPATH/src/github.com/elastic/beats
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
+   * 7.10
+   ```
 1. GitHub 기본 설정(생략?)
    ```
    root@60737c2bf952:/go/src/github.com/elastic/beats# git config --global user.name "mirero"
@@ -157,29 +162,28 @@
    로컬 설정은?
    git config --local 
    ```
+   - 사용자 정의 Beat 코드 템플릿 에러 : git config 설정이 없을 때 발생한다.
+     ```
+     *** Please tell me who you are.
+     
+     Run
+     
+       git config --global user.email "you@example.com"
+       git config --global user.name "Your Name"
+     
+     to set your account's default identity.
+     Omit --global to set the identity only in this repository.
+     
+     fatal: unable to auto-detect email address (got 'root@4463aa931db9.(none)')
+     Error: running "git commit -q -m Initial commit, Add generated files" failed with exit code 128
+     ```
    - 참고 사이트
      - [Git을 사용하기 위해 해야하는 최초 설정](https://coding-groot.tistory.com/97)  
-1. Beats 소스 받기
-   ```
-   root@60737c2bf952:/go# git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.9
-   
-   root@60737c2bf952:/go# cd $GOPATH/src/github.com/elastic/beats
-   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
-   * 7.9
-
-   # TODO? 태그 이동
-   git checkout tags/v7.9.1
-   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
-   * (HEAD detached at v7.9.1)
-     7.9
-
-   git checkout 7.9
-   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
-   * 7.9
-   ```
 1. Beat 소스 템플릿 만들기
    ```
    # pip 캐시 삭제
+   # .cache/pip 폴더를 사전에 삭제하지 않으면 에러가 발생한다.
+   #   Cache entry deserialization failed, entry ignored
    rm -rf ~/.cache/pip
    
    # 템플릿 생성
@@ -189,7 +193,8 @@
    Enter the beat path [github.com/mirero/lsbeat]:
    Enter your full name [Firstname Lastname]:
    Enter the beat type [beat]:
-   Enter the github.com/elastic/beats revision [master]: v7.9.1   # tag 이름
+   Enter the github.com/elastic/beats revision [master]: v7.9.1   # tag 이름 : GitHub Tag 이름과 일치해야 한다.
+   go: creating new go.mod: module github.com/mirero/lsbeat
    ...
    go: downloading github.com/elastic/beats/v7 v7.9.1
    ...
@@ -221,7 +226,64 @@
    
    # 윈도우 빌드
    ```
+<br/>
+
+
+## 1. libbeat 이미지 만들기
+1. Tag v7.9.1 Dockerfile 파일 다운로드
+   - [Dockerfile](https://github.com/elastic/beats/blob/v7.9.1/libbeat/Dockerfile)
+1. Dockerfile 만들기(7.9)
+   ```dockerfile
+   FROM golang:1.14.7
    
+   RUN \
+       apt-get update \
+         && apt-get install -y --no-install-recommends \
+            netcat \
+            libpcap-dev \
+            python3 \
+            python3-pip \
+            python3-venv \
+         && rm -rf /var/lib/apt/lists/*
+   
+   ENV PYTHON_ENV=/tmp/python-env
+   
+   RUN pip3 install --upgrade pip==20.1.1
+   RUN pip3 install --upgrade setuptools==47.3.2
+   RUN pip3 install --upgrade docker-compose==1.23.2
+
+   # Libbeat specific
+   RUN mkdir -p /etc/pki/tls/certs
+   ```
+1. libbeat 이미지 만들기
+   ```shell
+   docker image build -t libbeat:7.9.1 .
+   docker image ls
+   REPOSITORY                                   TAG       IMAGE ID       CREATED         SIZE
+   libbeat                                      7.9.1     e9e7183b2bc1   8 seconds ago   861MB
+   ```
+
+## 2. libbeat 컨테이너 개발환경 
+1. 컨테이너 실행
+   ```
+   docker container run -itd --name libbeat libbeat:7.9.1
+   ```
+   - `-itd` : 백그라운드로 실행하면서 대화형 쉘을 제공한다(실행 후에 shell 접속을 허용하기 위해서는 it 옵션이 필요한다). 
+     - `i` : --interactive, Keep STDIN open even if not attached
+     - `t` : --tty, Allocate a pseudo-TTY
+     - `d` : --detach, Run container in background and print container ID
+   - `--name` : 컨테이너 이름
+   - TODO? --security-opt="apparmor=unconfined" --cap-add-SYS_PTRACT
+     ```
+     could not launch process: ... operation not permitted
+     ```
+1. TODO? dep
+   ```
+   go get github.com/golang/dep/cmd/dep
+   go install github.com/golang/dep/cmd/dep
+   빌드 확인
+   ```
+   - dep : 
 1. VS Code 설치
    - 확장 도구
      - Remote Development Extension Pack 설치
