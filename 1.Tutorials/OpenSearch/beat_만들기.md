@@ -59,7 +59,7 @@
        - [How to Fix “Repository is not valid yet” Error in Ubuntu Linux](https://itsfoss.com/fix-repository-not-valid-yet-error-ubuntu/)
        - [WSL2 ssh 설정](https://oboki.net/workspace/system/windows/windows-%EB%A1%9C%EC%BB%AC%EC%97%90%EC%84%9C-linux-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EB%A7%8C%EB%93%A4%EA%B8%B0/)
 
-## 2.
+## 2. libbeat 컨테이너 개발환경 
 1. 컨테이너 실행
    ```
    docker container run -itd --name libbeat libbeat:7.9.1
@@ -99,12 +99,14 @@
      ```
    - 참고 사이트
      - [Mage GitHub](https://github.com/magefile/mage)
+     - Mage : 
 1. TODO? dep
    ```
    go get github.com/golang/dep/cmd/dep
    go install github.com/golang/dep/cmd/dep
    빌드 확인
    ```
+   - dep : 
 1. Oracle Driver 설치
    ```
    # alien 패키지 설치
@@ -121,11 +123,30 @@
    root@60737c2bf952:/tmp# alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
    root@60737c2bf952:/tmp# alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm
    root@60737c2bf952:/tmp# alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+   
+   # oracle driver 설치 확인
+   ?
    ```
    - alien : `rpm` 패키지 설치 및 `deb` 파일 변환 패키지
    - 참고 사이트
      - [Oracle Instant Client Downloads for Linux x86-64 (64-bit)](https://www.oracle.com/kr/database/technologies/instant-client/linux-x86-64-downloads.html) 
-1. TODO? GitHub 기본 설정
+1. SQL 
+   ```
+   # 패키지 설치
+   root@60737c2bf952:/go# apt-get install -y libaio1 libaio-dev
+   
+   # 패키지 설치 확인
+   root@60737c2bf952:/go# dpkg -l | grep libaio1
+   root@60737c2bf952:/go# dpkg -l | grep libaio-dev
+   ```
+   - libaio1 :  Linux kernel AIO access library - shared library
+   - libaio-dev : Linux kernel AIO access library - development files
+1. GoDror 패키지 설치
+   ```
+   root@60737c2bf952:/go# go get github.com/godror/godror                     # 소스 다운로드 및 빌드
+   root@60737c2bf952:/go# ls $GOPATH/pkg/linux_amd64/github.com/godror -al    # 소스 빌드 확인
+   ```
+3. TODO? GitHub 기본 설정
    ```
    git config --global user.name "xxx"
    git config --global user.email xxx@xxx.com
