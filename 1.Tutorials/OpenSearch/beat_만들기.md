@@ -275,3 +275,14 @@
   }
 }
 ```
+
+## TODO
+1. 7.9.1 배포 만들기
+   - 저장소? 
+1. LsBeat 컴파일
+1. LsBeat 자료구조 정리
+1. Golang Windows 빌드
+---
+1. OracleBeat 컴파일
+1. OracleBeat 자료구조 정리
+1. OracleBeat 배포 방법?
