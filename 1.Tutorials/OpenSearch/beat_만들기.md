@@ -33,7 +33,7 @@
    ```
 1. 이미지 빌드 과정 에러
    - apt-get update 에러
-       - 현상
+     - 현상
        ```
        apt-get update
        #5 3.156 E: Release file for http://security.debian.org/debian-security/dists/buster/updates/InRelease 
@@ -226,57 +226,6 @@
    
    # 윈도우 빌드
    ```
-<br/>
-
-
-## 1. libbeat 이미지 만들기
-1. Tag v7.9.1 Dockerfile 파일 다운로드
-   - [Dockerfile](https://github.com/elastic/beats/blob/v7.9.1/libbeat/Dockerfile)
-1. Dockerfile 만들기(7.9)
-   ```dockerfile
-   FROM golang:1.14.7
-   
-   RUN \
-       apt-get update \
-         && apt-get install -y --no-install-recommends \
-            netcat \
-            libpcap-dev \
-            python3 \
-            python3-pip \
-            python3-venv \
-         && rm -rf /var/lib/apt/lists/*
-   
-   ENV PYTHON_ENV=/tmp/python-env
-   
-   RUN pip3 install --upgrade pip==20.1.1
-   RUN pip3 install --upgrade setuptools==47.3.2
-   RUN pip3 install --upgrade docker-compose==1.23.2
-
-   # Libbeat specific
-   RUN mkdir -p /etc/pki/tls/certs
-   ```
-1. libbeat 이미지 만들기
-   ```shell
-   docker image build -t libbeat:7.9.1 .
-   docker image ls
-   REPOSITORY                                   TAG       IMAGE ID       CREATED         SIZE
-   libbeat                                      7.9.1     e9e7183b2bc1   8 seconds ago   861MB
-   ```
-
-## 2. libbeat 컨테이너 개발환경 
-1. 컨테이너 실행
-   ```
-   docker container run -itd --name libbeat libbeat:7.9.1
-   ```
-   - `-itd` : 백그라운드로 실행하면서 대화형 쉘을 제공한다(실행 후에 shell 접속을 허용하기 위해서는 it 옵션이 필요한다). 
-     - `i` : --interactive, Keep STDIN open even if not attached
-     - `t` : --tty, Allocate a pseudo-TTY
-     - `d` : --detach, Run container in background and print container ID
-   - `--name` : 컨테이너 이름
-   - TODO? --security-opt="apparmor=unconfined" --cap-add-SYS_PTRACT
-     ```
-     could not launch process: ... operation not permitted
-     ```
 1. TODO? dep
    ```
    go get github.com/golang/dep/cmd/dep
@@ -284,6 +233,8 @@
    빌드 확인
    ```
    - dep : 
+
+## 개발 환경
 1. VS Code 설치
    - 확장 도구
      - Remote Development Extension Pack 설치
@@ -292,12 +243,7 @@
    - Go 개발 환경(Ctrl+Shift+P)
      - `Go: Install/Update Tool` 
 
-## 참고 사이트
-- [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
-- https://coding-groot.tistory.com/category/Git
-- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
-
-## Beat 프로세스 명령어
+## Beat 프로세스 명령어 : `-c lsbeat.yml -e -d "*"`
 ```
 root@60737c2bf952:/go/src/github.com/mirero/lsbeat# ./lsbeat --help
 Usage:
@@ -333,40 +279,18 @@ Flags:
   -v, --v                            Log at INFO level
 ```
 
-## 로그 출력
+## 로그 출력 : `agent.version 7.9.1`
 ```
-2021-05-22T21:04:04.297+0900    DEBUG   [processors]    processing/processors.go:187    Publish event: {
-  "@timestamp": "2021-05-22T12:04:04.297Z",
+2021-05-22T22:05:12.430+0900    DEBUG   [processors]    processing/processors.go:187    Publish event: {
+  "@timestamp": "2021-05-22T13:05:12.430Z",
   "@metadata": {
-    "beat": "lsbeat4",
+    "beat": "lsbeat",
     "type": "_doc",
     "version": "7.9.1"
   },
   "type": "HHKO-LABTOP",
-  "counter": 71,
-  "agent": {
-    "version": "7.9.1",
-    "hostname": "HHKO-LABTOP",
-    "ephemeral_id": "9f81944c-5fee-4f98-a635-5c79a3c18335",
-    "id": "fc354ea4-c20f-488c-a61f-306a483c2fdf",
-    "name": "HHKO-LABTOP",
-    "type": "lsbeat4"
-  },
-  "ecs": {
-    "version": "1.8.0"
-  },
+  "counter": 54,
   "host": {
-    "architecture": "x86_64",
-    "os": {
-      "family": "debian",
-      "name": "Ubuntu",
-      "kernel": "5.4.72-microsoft-standard-WSL2",
-      "codename": "bionic",
-      "platform": "ubuntu",
-      "version": "18.04.5 LTS (Bionic Beaver)"
-    },
-    "name": "HHKO-LABTOP",
-    "containerized": false,
     "ip": [
       "172.28.117.191",
       "fe80::215:5dff:fe5a:98d1"
@@ -376,14 +300,40 @@ Flags:
       "0e:bc:7a:0e:fb:8f",
       "00:15:5d:5a:98:d1"
     ],
-    "hostname": "HHKO-LABTOP"
+    "hostname": "HHKO-LABTOP",
+    "architecture": "x86_64",
+    "os": {
+      "kernel": "5.4.72-microsoft-standard-WSL2",
+      "codename": "bionic",
+      "platform": "ubuntu",
+      "version": "18.04.5 LTS (Bionic Beaver)",
+      "family": "debian",
+      "name": "Ubuntu"
+    },
+    "name": "HHKO-LABTOP",
+    "containerized": false
+  },
+  "agent": {
+    "hostname": "HHKO-LABTOP",
+    "ephemeral_id": "a5d36715-c74d-4b23-a82b-3ee89d7050ec",
+    "id": "fc354ea4-c20f-488c-a61f-306a483c2fdf",
+    "name": "HHKO-LABTOP",
+    "type": "lsbeat",
+    "version": "7.9.1"
+  },
+  "ecs": {
+    "version": "1.8.0"
   }
 }
 ```
 
+## 참고 사이트
+- [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
+- https://coding-groot.tistory.com/category/Git
+- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
+
+
 ## TODO
-1. 7.9.1 배포 만들기
-   - 저장소? 
 1. LsBeat 컴파일
 1. LsBeat 자료구조 정리
 1. Golang Windows 빌드
