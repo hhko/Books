@@ -333,6 +333,7 @@ Flags:
 - https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
 - [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
   `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
+- https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu
 
 
 ## TODO
@@ -371,4 +372,88 @@ Error response from daemon: i/o timeout
 7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
 8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
 9. Start vmcompute from powershell "net start vmcompute"
+```
+
+## Go 설치 Shell Script : `chmod +x setup_beat_env.sh`
+```bash
+#!/bin/bash
+
+# https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
+
+#
+# 1. 패키지 설치
+#    - alien : convert and install rpm and other packages
+#    - libaio1 : Linux kernel AIO access library - shared library
+#    - libaio-dev : Linux kernel AIO access library - development files
+#
+apt-get -y update
+apt-get -y upgrade
+apt-get install -y alien
+apt-get install -y libaio1 libaio-dev
+
+#
+# 2. mage 설치 : 빌드 Go 패키지
+#
+go get -u -d github.com/magefile/mage 
+cd $GOPATH/src/github.com/magefile/mage
+go run bootstrap.go 
+
+#
+# 3. oracle driver 설치
+#    - oracle-instantclient-basic-21.1.0.0.0-1.x86_64
+#    - oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64
+#    - oracle-instantclient-devel-21.1.0.0.0-1.x86_64
+#
+cd /tmp
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm
+wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm
+alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+
+#
+# 4. godror 설치 : Oracle Go 패키지
+#
+go get github.com/godror/godror  
+
+#
+# 5. beats 7.10 브랜치 소스 받기
+#
+git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10
+
+#
+# 6. Git 기본 설정
+#
+git config --global user.name "mirero"
+git config --global user.email "support@mirero.co.kr"
+
+#
+# 7. 사용자 정의 비트 만들기 전에 .cache 삭제
+#
+rm -rf ~/.cache/pip
+cd $GOPATH/src/github.com/elastic/beats
+
+##
+## 8. 사용자 정의 beat 템플릿 코드 만들기
+##
+## /go/src/github.com/elastic/beats# mage GenerateCustomBeat
+##   Enter the beat name [examplebeat]: lsbeat             # beat 이름
+##   Enter your github name [your-github-name]: mirero     # 폴더
+##   Enter the beat path [github.com/mirero/lsbeat]:
+##   Enter your full name [Firstname Lastname]:
+##   Enter the beat type [beat]:
+##   Enter the github.com/elastic/beats revision [master]: v7.9.1   
+##                                                         # tag 이름 : GitHub Tag 이름과 일치해야 한다.
+## 
+## cd $GOPATH/src/github.com/mirero/lsbeat
+## make update
+## mage build
+## ./lsbeat -c lsbeat.yml -e -d "*"
+
+##
+## chmod +x setup_beat_env.sh
+##
+
+exit 0
 ```
