@@ -163,6 +163,7 @@
    ```
    root@60737c2bf952:/go# git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.9
    
+   root@60737c2bf952:/go# cd $GOPATH/src/github.com/elastic/beats
    root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
    * 7.9
 
@@ -181,8 +182,7 @@
    # pip 캐시 삭제
    rm -rf ~/.cache/pip
    
-   # 템플릿 생성
-   cd $GOPATH/src/github.com/elastic/beats
+   # 템플릿 생성   
    root@60737c2bf952:/go/src/github.com/elastic/beats# mage GenerateCustomBeat
    Enter the beat name [examplebeat]: lsbeat
    Enter your github name [your-github-name]: mirero
@@ -190,7 +190,33 @@
    Enter your full name [Firstname Lastname]:
    Enter the beat type [beat]:
    Enter the github.com/elastic/beats revision [master]: 7.9
+   ...
+   Generated fields.yml for lsbeat to /go/src/github.com/mirero/lsbeat/fields.yml
+   =======================
+   Your custom beat is now available as /go/src/github.com/mirero/lsbeat
+   =======================
+   
+   cd $GOPATH/src/github.com/mirero/lsbeat
+   root@60737c2bf952:/go/src/github.com/mirero/lsbeat# make update
+   Generated fields.yml for lsbeat to /go/src/github.com/mirero/lsbeat/fields.yml
+   >> Building lsbeat.yml for linux/amd64
+   >> Building lsbeat.reference.yml for linux/amd64
+   >> Building lsbeat.docker.yml for linux/amd64
+   Updating generated files for lsbeat
+   ...
+   root@60737c2bf952:/go/src/github.com/mirero/lsbeat# mage build  # 빌드
+   
+   ls -al
+   -rwxr-xr-x  1 root root 58116840 May 22 07:52 lsbeat
+   
+   ./lsbeat -e -d "*"
+     -c lsbeat.yml : yml 설정 파일 지정
+     -e : 로그 출력을 stdout으로 한다(파일로 생성하지 않는다).
+     -d : 로그 수준은 Debug이다.
+   
+   # 윈도우 빌드
    ```
+   
 1. VS Code 설치
    - 확장 도구
      - Remote Development Extension Pack 설치
@@ -198,3 +224,54 @@
      - Go?
    - Go 개발 환경(Ctrl+Shift+P)
      - `Go: Install/Update Tool` 
+
+## 참고 사이트
+- [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
+- https://coding-groot.tistory.com/category/Git
+- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
+
+## 로그 출력
+```
+2021-05-22T08:15:23.694Z        DEBUG   [processors]    processing/processors.go:187    Publish event: {
+  "@timestamp": "2021-05-22T08:15:23.693Z",
+  "@metadata": {
+    "beat": "lsbeat",
+    "type": "_doc",
+    "version": "7.9.4"
+  },
+  "host": {
+    "id": "a8eb6cac33e701ae867269db5ce80e7f",
+    "containerized": true,
+    "name": "60737c2bf952",
+    "ip": [
+      "172.17.0.2"
+    ],
+    "mac": [
+      "02:42:ac:11:00:02"
+    ],
+    "hostname": "60737c2bf952",
+    "architecture": "x86_64",
+    "os": {
+      "version": "10 (buster)",
+      "family": "debian",
+      "name": "Debian GNU/Linux",
+      "kernel": "5.4.72-microsoft-standard-WSL2",
+      "codename": "buster",
+      "platform": "debian"
+    }
+  },
+  "counter": 95,
+  "type": "60737c2bf952",
+  "agent": {
+    "hostname": "60737c2bf952",
+    "ephemeral_id": "ac4aa143-f740-4e07-b453-63b3bf2e17bf",
+    "id": "2f8b6823-fb72-41c5-9945-5861dc111bae",
+    "name": "60737c2bf952",
+    "type": "lsbeat",
+    "version": "7.9.4"
+  },
+  "ecs": {
+    "version": "1.8.0"
+  }
+}
+```
