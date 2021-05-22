@@ -286,3 +286,6 @@
 1. OracleBeat 컴파일
 1. OracleBeat 자료구조 정리
 1. OracleBeat 배포 방법?
+---
+1. Docker Host 네트워크
+1. 원격에서 WSL2 접근
