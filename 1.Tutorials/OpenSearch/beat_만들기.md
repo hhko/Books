@@ -334,6 +334,7 @@ Flags:
 - [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
   `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
 - https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu
+- https://jepi.tistory.com/221
 
 
 ## TODO
