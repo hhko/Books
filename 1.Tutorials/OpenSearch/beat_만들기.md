@@ -182,14 +182,16 @@
    # pip 캐시 삭제
    rm -rf ~/.cache/pip
    
-   # 템플릿 생성   
+   # 템플릿 생성
    root@60737c2bf952:/go/src/github.com/elastic/beats# mage GenerateCustomBeat
    Enter the beat name [examplebeat]: lsbeat
    Enter your github name [your-github-name]: mirero
    Enter the beat path [github.com/mirero/lsbeat]:
    Enter your full name [Firstname Lastname]:
    Enter the beat type [beat]:
-   Enter the github.com/elastic/beats revision [master]: 7.9
+   Enter the github.com/elastic/beats revision [master]: v7.9.1   # tag 이름
+   ...
+   go: downloading github.com/elastic/beats/v7 v7.9.1
    ...
    Generated fields.yml for lsbeat to /go/src/github.com/mirero/lsbeat/fields.yml
    =======================
@@ -209,10 +211,13 @@
    ls -al
    -rwxr-xr-x  1 root root 58116840 May 22 07:52 lsbeat
    
-   ./lsbeat -e -d "*"
+   ./lsbeat -c lsbeat.yml -e -d "*"
      -c lsbeat.yml : yml 설정 파일 지정
+       -c, --c string : Configuration file, relative to path.config (default "lsbeat.yml")
      -e : 로그 출력을 stdout으로 한다(파일로 생성하지 않는다).
+       -e, --e : Log to stderr and disable syslog/file output
      -d : 로그 수준은 Debug이다.
+       -d, --d string : Enable certain debug selectors
    
    # 윈도우 빌드
    ```
@@ -230,48 +235,86 @@
 - https://coding-groot.tistory.com/category/Git
 - https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
 
+## Beat 프로세스 명령어
+```
+root@60737c2bf952:/go/src/github.com/mirero/lsbeat# ./lsbeat --help
+Usage:
+  lsbeat [flags]
+  lsbeat [command]
+
+Available Commands:
+  export      Export current config or index template
+  help        Help about any command
+  keystore    Manage secrets keystore
+  run         Run lsbeat
+  setup       Setup index template, dashboards and ML jobs
+  test        Test config
+  version     Show current version info
+
+Flags:
+  -E, --E setting=value              Configuration overwrite
+  -N, --N                            Disable actual publishing for testing
+  -c, --c string                     Configuration file, relative to path.config (default "lsbeat.yml")
+      --cpuprofile string            Write cpu profile to file
+  -d, --d string                     Enable certain debug selectors
+  -e, --e                            Log to stderr and disable syslog/file output
+      --environment environmentVar   set environment being ran in (default default)
+  -h, --help                         help for lsbeat
+      --httpprof string              Start pprof http server
+      --memprofile string            Write memory profile to this file
+      --path.config string           Configuration path
+      --path.data string             Data path
+      --path.home string             Home path
+      --path.logs string             Logs path
+      --plugin pluginList            Load additional plugins
+      --strict.perms                 Strict permission checking on config files (default true)
+  -v, --v                            Log at INFO level
+```
+
 ## 로그 출력
 ```
-2021-05-22T08:15:23.694Z        DEBUG   [processors]    processing/processors.go:187    Publish event: {
-  "@timestamp": "2021-05-22T08:15:23.693Z",
+2021-05-22T21:04:04.297+0900    DEBUG   [processors]    processing/processors.go:187    Publish event: {
+  "@timestamp": "2021-05-22T12:04:04.297Z",
   "@metadata": {
-    "beat": "lsbeat",
+    "beat": "lsbeat4",
     "type": "_doc",
-    "version": "7.9.4"
+    "version": "7.9.1"
   },
-  "host": {
-    "id": "a8eb6cac33e701ae867269db5ce80e7f",
-    "containerized": true,
-    "name": "60737c2bf952",
-    "ip": [
-      "172.17.0.2"
-    ],
-    "mac": [
-      "02:42:ac:11:00:02"
-    ],
-    "hostname": "60737c2bf952",
-    "architecture": "x86_64",
-    "os": {
-      "version": "10 (buster)",
-      "family": "debian",
-      "name": "Debian GNU/Linux",
-      "kernel": "5.4.72-microsoft-standard-WSL2",
-      "codename": "buster",
-      "platform": "debian"
-    }
-  },
-  "counter": 95,
-  "type": "60737c2bf952",
+  "type": "HHKO-LABTOP",
+  "counter": 71,
   "agent": {
-    "hostname": "60737c2bf952",
-    "ephemeral_id": "ac4aa143-f740-4e07-b453-63b3bf2e17bf",
-    "id": "2f8b6823-fb72-41c5-9945-5861dc111bae",
-    "name": "60737c2bf952",
-    "type": "lsbeat",
-    "version": "7.9.4"
+    "version": "7.9.1",
+    "hostname": "HHKO-LABTOP",
+    "ephemeral_id": "9f81944c-5fee-4f98-a635-5c79a3c18335",
+    "id": "fc354ea4-c20f-488c-a61f-306a483c2fdf",
+    "name": "HHKO-LABTOP",
+    "type": "lsbeat4"
   },
   "ecs": {
     "version": "1.8.0"
+  },
+  "host": {
+    "architecture": "x86_64",
+    "os": {
+      "family": "debian",
+      "name": "Ubuntu",
+      "kernel": "5.4.72-microsoft-standard-WSL2",
+      "codename": "bionic",
+      "platform": "ubuntu",
+      "version": "18.04.5 LTS (Bionic Beaver)"
+    },
+    "name": "HHKO-LABTOP",
+    "containerized": false,
+    "ip": [
+      "172.28.117.191",
+      "fe80::215:5dff:fe5a:98d1"
+    ],
+    "mac": [
+      "ee:7b:77:85:09:64",
+      "0e:bc:7a:0e:fb:8f",
+      "00:15:5d:5a:98:d1"
+    ],
+    "hostname": "HHKO-LABTOP"
   }
 }
 ```
