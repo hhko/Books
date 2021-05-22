@@ -146,11 +146,50 @@
    root@60737c2bf952:/go# go get github.com/godror/godror                     # 소스 다운로드 및 빌드
    root@60737c2bf952:/go# ls $GOPATH/pkg/linux_amd64/github.com/godror -al    # 소스 빌드 확인
    ```
-3. TODO? GitHub 기본 설정
+1. GitHub 기본 설정(생략?)
    ```
-   git config --global user.name "xxx"
-   git config --global user.email xxx@xxx.com
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git config --global user.name "mirero"
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git config --global user.email "support@mirero.co.kr"
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git config --list
+   user.name=mirero
+   user.email=support@mirero.co.kr
+   
    로컬 설정은?
+   git config --local 
+   ```
+   - 참고 사이트
+     - [Git을 사용하기 위해 해야하는 최초 설정](https://coding-groot.tistory.com/97)  
+1. Beats 소스 받기
+   ```
+   root@60737c2bf952:/go# git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.9
+   
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
+   * 7.9
+
+   # TODO? 태그 이동
+   git checkout tags/v7.9.1
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
+   * (HEAD detached at v7.9.1)
+     7.9
+
+   git checkout 7.9
+   root@60737c2bf952:/go/src/github.com/elastic/beats# git branch
+   * 7.9
+   ```
+1. Beat 소스 템플릿 만들기
+   ```
+   # pip 캐시 삭제
+   rm -rf ~/.cache/pip
+   
+   # 템플릿 생성
+   cd $GOPATH/src/github.com/elastic/beats
+   root@60737c2bf952:/go/src/github.com/elastic/beats# mage GenerateCustomBeat
+   Enter the beat name [examplebeat]: lsbeat
+   Enter your github name [your-github-name]: mirero
+   Enter the beat path [github.com/mirero/lsbeat]:
+   Enter your full name [Firstname Lastname]:
+   Enter the beat type [beat]:
+   Enter the github.com/elastic/beats revision [master]: 7.9
    ```
 1. VS Code 설치
    - 확장 도구
