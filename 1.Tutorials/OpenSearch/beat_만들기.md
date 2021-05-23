@@ -234,15 +234,6 @@
    ```
    - dep : 
 
-## 개발 환경
-1. VS Code 설치
-   - 확장 도구
-     - Remote Development Extension Pack 설치
-     - Docker ?
-     - Go?
-   - Go 개발 환경(Ctrl+Shift+P)
-     - `Go: Install/Update Tool` 
-
 ## Beat 프로세스 명령어 : `-c lsbeat.yml -e -d "*"`
 ```
 root@60737c2bf952:/go/src/github.com/mirero/lsbeat# ./lsbeat --help
@@ -279,7 +270,7 @@ Flags:
   -v, --v                            Log at INFO level
 ```
 
-## 로그 출력 : `agent.version 7.9.1`
+## Beat 기본 로그 출력 : `agent.version 7.9.1`
 ```
 2021-05-22T22:05:12.430+0900    DEBUG   [processors]    processing/processors.go:187    Publish event: {
   "@timestamp": "2021-05-22T13:05:12.430Z",
@@ -326,6 +317,80 @@ Flags:
   }
 }
 ```
+
+## 개발 환경
+1. VS Code 설치
+   - 확장 도구
+     - Host : Remote Development Extension Pack 설치
+     - Host : Docker
+     - Container : Go
+   - Go 개발 환경(Ctrl+Shift+P)
+     - Container : `Go: Install/Update Tool` 
+       ```
+       Tools environment: GOPATH=/go
+       Installing 10 tools at /go/bin in module mode.
+         gopkgs
+         go-outline
+         gotests
+         gomodifytags
+         impl
+         goplay
+         dlv
+         dlv-dap
+         staticcheck
+         gopls
+       ```
+1. VS Code launch.json 설정 : Debug > create a launch.json file > Go: Launch package
+   ```json
+   {
+       // Use IntelliSense to learn about possible attributes.
+       // Hover to view descriptions of existing attributes.
+       // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "name": "Launch Package",
+               "type": "go",
+               "request": "launch",
+               "mode": "debug",
+               "program": "${workspaceFolder}",
+               "env": {
+                   "PKG_CONFIG_PATH":"/usr/share/pkgconfig",
+                   "C_INCLUDE_PATH":"/usr/include:/usr/include/oracle/21/client64:/usr/local/include"
+               },
+               "args": [
+                   "-c", "oraclebeat.yml",
+                   "-e", 
+                   "-d", "\"*\"" 
+               ]
+           }
+       ]
+   }
+   ```
+   - env : oracle일 때만
+     - PKG_CONFIG_PATH : `/usr/share/pkgconfig`
+     - C_INCLUDE_PATH : `/usr/include:/usr/include/oracle/21/client64:/usr/local/include`
+   - args
+1. VS Code launch.json 설정 : Ctrl+Shift+P > settings.json 입력 > Perferences: Open Workspace Settings(JSON)
+   ```json
+   {
+       "go.toolsEnvVars": {
+           "GOOS":"linux",
+           "GOARCH":"amd64",
+           "CGO_ENABLED":"1"
+       } , 
+       "go.buildFlags":[
+           "-o oraclebeat "
+       ]   
+   }
+   ```
+   - go.toolsEnvVars : Go 환경 설정
+     - GOOS : OS
+     - GOARCH : 아키텍처
+     - CGO_ENABLED : CGO 활성화(1 = enable, 0 = disable)
+       - CGO : Go에서 C코드 호출할 수 있도록 하는 기능
+       - CGO : 크로스 컴파일링 시 비활성화된다. 
+   - go.buildFlags
 
 ## 참고 사이트
 - [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
