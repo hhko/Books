@@ -340,6 +340,8 @@ Flags:
          staticcheck
          gopls
        ```
+
+## VS Code 디버깅 환경 구성
 1. VS Code launch.json 설정 : Debug > create a launch.json file > Go: Launch package
    ```json
    {
@@ -384,13 +386,25 @@ Flags:
        ]   
    }
    ```
-   - go.toolsEnvVars : Go 환경 설정
+   - go.toolsEnvVars : Go 환경 변수
      - GOOS : OS
      - GOARCH : 아키텍처
      - CGO_ENABLED : CGO 활성화(1 = enable, 0 = disable)
        - CGO : Go에서 C코드 호출할 수 있도록 하는 기능
        - CGO : 크로스 컴파일링 시 비활성화된다. 
-   - go.buildFlags
+   - go.buildFlags : Go 빌드 플래그
+   - F5 : 디버깅
+     - 구성 변경 및 go package 등이 변경되었다면 오류가 발생할 수 있다.
+     - mage build 명령어로 재구성을 해야한다.
+
+## Beat 파일 구성
+- `/beater/{beat}.go` : 주요 파일
+- `/config/config.go` : {beat].yml 파일 설정 자료구조
+- `/_meta/fields.yml` : 전송 데이터 자료 구조
+- `/_meta/config/{beat}.*.tmpl : ?
+  - `make update(mage update)` 명령어 실행시 `/{beat}.yml` 파일을 생성하는 템플릿 파일 
+- `/magefile.go` : `mage build` 명령어 실행 파일
+  - 프로젝트 빌드 
 
 ## 참고 사이트
 - [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
