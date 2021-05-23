@@ -392,6 +392,7 @@ Flags:
      - CGO_ENABLED : CGO 활성화(1 = enable, 0 = disable)
        - CGO : Go에서 C코드 호출할 수 있도록 하는 기능
        - CGO : 크로스 컴파일링 시 비활성화된다. 
+     - TODO? 64비트 vs. 32비트 설정 
    - go.buildFlags : Go 빌드 플래그
    - F5 : 디버깅
      - 구성 변경 및 go package 등이 변경되었다면 오류가 발생할 수 있다.
@@ -407,7 +408,23 @@ Flags:
 1. 빌드 파일
    - `/magefile.go` : `mage build` 명령어 실행 파일
    - TODO? `go build -o lsbeat` vs. `mage build` 차이점
+   - 64bit vs. 32bit 구분하여 빌드하는 방법
 
+## Oracle 배포 이미지 만들기
+- `-e -strict.perms=false` : [Config file ownership and permissionsedit](https://www.elastic.co/guide/en/beats/libbeat/current/config-file-permissions.html)
+- Dockerfile 파일
+- docker-compose.yml 파일
+  - 네이트워크?
+  - 볼륨?
+  - 실행 옵션(로그)
+- 이미지 배포
+  - `docker image save -o xxx.tar xxx:xxx`
+  - `docker image load -i xxx.tar`
+  - docker-compose.yml
+  - {beat}
+  - {beat}.yml
+
+  
 ## 소스
 1. Git 에러
    - 현상
