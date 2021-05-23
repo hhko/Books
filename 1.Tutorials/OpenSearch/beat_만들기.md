@@ -345,9 +345,6 @@ Flags:
 1. VS Code launch.json 설정 : Debug > create a launch.json file > Go: Launch package
    ```json
    {
-       // Use IntelliSense to learn about possible attributes.
-       // Hover to view descriptions of existing attributes.
-       // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
        "version": "0.2.0",
        "configurations": [
            {
@@ -371,7 +368,10 @@ Flags:
    ```
    - env : oracle일 때만
      - PKG_CONFIG_PATH : `/usr/share/pkgconfig`
+       - TODO? PKG_CONFIG_PATH 
      - C_INCLUDE_PATH : `/usr/include:/usr/include/oracle/21/client64:/usr/local/include`
+       - 21은 oracle driver 버전이다.
+       - TODO? C_INCLUDE_PATH 
    - args
 1. VS Code launch.json 설정 : Ctrl+Shift+P > settings.json 입력 > Perferences: Open Workspace Settings(JSON)
    ```json
@@ -398,13 +398,29 @@ Flags:
      - mage build 명령어로 재구성을 해야한다.
 
 ## Beat 파일 구성
-- `/beater/{beat}.go` : 주요 파일
-- `/config/config.go` : {beat].yml 파일 설정 자료구조
-- `/_meta/fields.yml` : 전송 데이터 자료 구조
-- `/_meta/config/{beat}.*.tmpl : ?
-  - `make update(mage update)` 명령어 실행시 `/{beat}.yml` 파일을 생성하는 템플릿 파일 
-- `/magefile.go` : `mage build` 명령어 실행 파일
-  - 프로젝트 빌드 
+1. 작업 파일
+   - `/beater/{beat}.go` : 주요 파일
+   - `/config/config.go` : {beat].yml 파일 설정 자료구조
+   - `/_meta/fields.yml` : 전송 데이터 자료 구조
+   - `/_meta/config/{beat}.*.tmpl : ?
+     - `make update(mage update)` 명령어 실행시 `/{beat}.yml` 파일을 생성하는 템플릿 파일 
+1. 빌드 파일
+   - `/magefile.go` : `mage build` 명령어 실행 파일
+   - TODO? `go build -o lsbeat` vs. `mage build` 차이점
+
+## 소스
+1. Git 에러
+   - 현상
+     ```
+     url has no scheme: {helperselector}
+     ```
+   - 원인 : 모름
+   - 대응
+     - `/root/.gitconfig` 또느 `C:\Users\{UserName}` 파일 수정
+       - 변경 전 : `[credential "url_without_scheme"]`
+       - 변경 후 : `[credential "https://url_without_scheme"]`
+   - 참고 사이트
+     - [push할 때, warning: url has no scheme 오류](https://smecsm.tistory.com/121) 
 
 ## 참고 사이트
 - [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
