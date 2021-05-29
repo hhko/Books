@@ -12,14 +12,14 @@
 FROM golang:1.14.12
 
 RUN \
-    apt-get update \
-      && apt-get install -y --no-install-recommends \
-         netcat \
-         libpcap-dev \
-         python3 \
-         python3-pip \
-         python3-venv \
-      && rm -rf /var/lib/apt/lists/*
+	apt-get update \
+		&& apt-get install -y --no-install-recommends \
+         		netcat \
+         		libpcap-dev \
+         		python3 \
+         		python3-pip \
+         		python3-venv \
+      		&& rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip==20.1.1
 RUN pip3 install --upgrade setuptools==47.3.2
@@ -37,11 +37,11 @@ RUN mkdir -p /etc/pki/tls/certs
 #
 RUN \
 	apt-get -y update \
-	&& apt-get install -y --no-install-recommends \
-		alien \
-		libaio1 \
-		libaio-dev \
-	&& rm -rf /var/lib/apt/lists/*
+		&& apt-get install -y --no-install-recommends \
+			alien \
+			libaio1 \
+			libaio-dev \
+		&& rm -rf /var/lib/apt/lists/*
 
 	
 #
@@ -49,8 +49,8 @@ RUN \
 #	
 RUN \
 	go get -u -d github.com/magefile/mage \
-	&& cd $GOPATH/src/github.com/magefile/mage \
-	&& go run bootstrap.go 
+		&& cd $GOPATH/src/github.com/magefile/mage \
+		&& go run bootstrap.go 
 
 	
 #
@@ -63,13 +63,13 @@ RUN \
 #
 RUN \
 	cd /tmp \
-	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
-	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
-	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
-	&& alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
-	&& alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
-	&& alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
-	&& rm -rf /tmp/* 
+		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
+		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
+		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
+		&& alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
+		&& alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
+		&& alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
+		&& rm -rf /tmp/* 
 
 	
 #
@@ -83,8 +83,8 @@ RUN go get github.com/godror/godror
 #
 RUN \
 	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
-	&& git config --global user.name "mirero" \
-	&& git config --global user.email "support@mirero.co.kr" 
+		&& git config --global user.name "mirero" \
+		&& git config --global user.email "support@mirero.co.kr" 
 	
 #
 # 단계 7. .cache의 pip 삭제
