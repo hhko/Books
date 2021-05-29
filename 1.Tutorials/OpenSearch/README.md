@@ -1,3 +1,3 @@
 - [OpenSearch 이미지 만들기](./.md)
-- [Elasitc Beat 개발 환경 만들기 by WSL2](./.md)
+- [Elasitc Beat 개발 환경 만들기 by WSL2](./Elastic_Beat_개발_환경_만들기_by_WSL2.md)
 - [Elasitc Beat 개발 환경 만들기 by Docker](./.md)
