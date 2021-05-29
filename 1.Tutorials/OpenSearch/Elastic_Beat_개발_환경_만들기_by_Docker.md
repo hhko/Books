@@ -119,7 +119,9 @@ RUN \
       ```
 	  could not launch process: ... operation not permitted
 	  ```
-  - `docker container exec -it [컨테이너 ID] bash`
+  - 컨테이너 실행 : `docker container exec -it beats bash`
+  - 컨테이너 중지 : `docker container stop beats`
+  - 컨테이너 제거 : `docker container rm beats`
 
 
 - 단계 5. 사용자 정의 Beat 템플릿 코드 만들기
