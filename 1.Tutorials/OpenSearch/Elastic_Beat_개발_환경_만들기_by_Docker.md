@@ -82,18 +82,11 @@ RUN \
 	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
 	&& git config --global user.name "mirero" \
 	&& git config --global user.email "support@mirero.co.kr" 
-
 	
 #
-# 단계 7. 사용자 정의 비트 만들기 전에 .cache 삭제
+# 단계 7. .cache의 pip 삭제
 #
-RUN \
-	rm -rf ~/.cache/pip \
-	&& rm -rf /root/.cache/* \
-	&& rm -rf $GOPATH/src/golang.org/* \
-	&& rm -rf $GOPATH/src/github.com/go-logfmt \
-	&& rm -rf $GOPATH/src/github.com/godror \
-	&& rm -rf $GOPATH/src/github.com/magefile
+RUN rm -rf ~/.cache/pip
 ```
 
 <br/>
@@ -132,7 +125,7 @@ RUN \
 
   /go/src/github.com/elastic/beats# mage GenerateCustomBeat
      Enter the beat name [examplebeat]: lsbeat             		# beat 이름
-     Enter your github name [your-github-name]: mirero     		# 폴더
+     Enter your github name [your-github-name]: mirero     		# 조직 이름
      Enter the beat path [github.com/mirero/lsbeat]:       		# 생성될 $GOPATH/src 하위 폴더 경로
      Enter your full name [Firstname Lastname]:
      Enter the beat type [beat]:
