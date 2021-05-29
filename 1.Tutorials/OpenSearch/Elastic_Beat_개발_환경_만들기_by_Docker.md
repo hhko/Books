@@ -87,11 +87,12 @@ RUN \
 #
 # 단계 7. 사용자 정의 비트 만들기 전에 .cache 삭제
 #
-RUN rm -rf ~/.cache/pip
-	&& rm -rf /root/.cache/*
-	&& rm -rf $GOPATH/src/golang.org/*
-	&& rm -rf $GOPATH/src/github.com/go-logfmt
-	&& rm -rf $GOPATH/src/github.com/godror
+RUN \
+	rm -rf ~/.cache/pip \
+	&& rm -rf /root/.cache/* \
+	&& rm -rf $GOPATH/src/golang.org/* \
+	&& rm -rf $GOPATH/src/github.com/go-logfmt \
+	&& rm -rf $GOPATH/src/github.com/godror \
 	&& rm -rf $GOPATH/src/github.com/magefile
 ```
 
