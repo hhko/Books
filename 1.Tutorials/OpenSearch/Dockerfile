@@ -118,6 +118,7 @@ RUN rm -rf ~/.cache/pip
 
 # 단계 5. 사용자 정의 Beat 템플릿 코드 만들기
 #  - Creating a New Beat : https://www.elastic.co/guide/en/beats/devguide/current/new-beat.html
+#  - Elasitc Beat Tags : https://github.com/elastic/beats/tags
 # rm -rf ~/.cache/pip
 # cd $GOPATH/src/github.com/elastic/beats
 #
