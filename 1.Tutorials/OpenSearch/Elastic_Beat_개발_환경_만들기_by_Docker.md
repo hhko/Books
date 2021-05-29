@@ -126,12 +126,12 @@ RUN rm -rf ~/.cache/pip
   cd $GOPATH/src/github.com/elastic/beats
 
   /go/src/github.com/elastic/beats# mage GenerateCustomBeat
-   Enter the beat name [examplebeat]: lsbeat             		# beat 이름
-   Enter your github name [your-github-name]: mirero     		# 폴더
-   Enter the beat path [github.com/mirero/lsbeat]:       		# 생성될 $GOPATH/src 하위 폴더 경로
-   Enter your full name [Firstname Lastname]:
-   Enter the beat type [beat]:
-   Enter the github.com/elastic/beats revision [master]: v7.9.1	# Beat 버전 : GitHub Tag 이름
+     Enter the beat name [examplebeat]: lsbeat             		# beat 이름
+     Enter your github name [your-github-name]: mirero     		# 폴더
+     Enter the beat path [github.com/mirero/lsbeat]:       		# 생성될 $GOPATH/src 하위 폴더 경로
+     Enter your full name [Firstname Lastname]:
+     Enter the beat type [beat]:
+     Enter the github.com/elastic/beats revision [master]: v7.9.1	# Beat 버전 : GitHub Tag 이름
   ```
 
 
@@ -184,6 +184,7 @@ RUN rm -rf ~/.cache/pip
 - 실행 : Beat 버전 확인
   ```
   ./lsbeat -e -d "*"				# 디거그 모드 콘솔 출력
+ 
   2021-05-29T12:31:40.889Z        DEBUG   [processors]    processing/processors.go:187    Publish event: {
     "@timestamp": "2021-05-29T12:31:40.888Z",
     "@metadata": {
@@ -192,3 +193,80 @@ RUN rm -rf ~/.cache/pip
       "version": "7.9.1"				# Beat 버전 확인
     },
   ```
+
+## 개발 환경
+
+- 단계 1. VS Code 설치
+  - 사이트 : https://code.visualstudio.com/
+
++ 단계 2. VS Code Host 확장 도구 설치
+  - Remote Containers
+  - Docker
+
+- 단계 3. VS Code에서 Container 접속
+  
+
++ 단계 4. VS Code Container 확장 도구 설치
+  - Go (Go Team at Google)
+ 
+- 단계 5. Go 도구 설치
+  - Ctrl+Shift+P > Go: Install/Update Tools > 전부 체크
+    ```
+    Tools environment: GOPATH=/go
+    Installing 10 tools at /go/bin in module mode.
+      gopkgs
+      go-outline
+      gotests
+      gomodifytags
+      impl
+      goplay
+      dlv
+      dlv-dap
+      staticcheck
+      gopls
+    ```
+
++ 단계 6. VS Code에서 Beat 폴더 열기
+
+- 단계 7. VS Code 설정
+  - launch.json : 메뉴 > Run > Add Configuration... > Go: Launch Package
+    ```json
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Launch Package",
+                "type": "go",
+                "request": "launch",
+                "mode": "debug",
+                "program": "${workspaceFolder}",
+                "args": [
+                    "-c", "lsbeat.yml",
+                    "-e", 
+                    "-d", "\"*\"" 
+                ]
+            }
+        ]
+    }
+    ```
+  - settings.json : Ctrl+Shift+P > Perferences: Open Workspace Settings (JSON)
+    ```json
+    {
+        "go.toolsEnvVars": {
+            "GOOS":"linux",
+            "GOARCH":"amd64",
+            "CGO_ENABLED":"1"
+        } , 
+        "go.buildFlags": [
+            "-o lsbeat "
+        ]   
+    }
+    ```
+  - go.toolsEnvVars : Go 환경 변수
+    - GOOS : OS
+    - GOARCH : 아키텍처
+    - CGO_ENABLED : CGO 활성화(1 = enable, 0 = disable)
+    - CGO : Go에서 C코드 호출할 수 있도록 하는 기능(크로스 컴파일링 시 비활성화된다.)
+  - go.buildFlags : Go 빌드 플래그
+    - go build -o lsbeat
+  - F5 디버깅
