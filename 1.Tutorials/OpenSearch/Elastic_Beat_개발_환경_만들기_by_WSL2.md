@@ -530,13 +530,15 @@ exit 0
 ```
 
 ## 참고 사이트
+- [나만의 Beat 만들기 - Blog](https://www.elastic.co/kr/blog/build-your-own-beat)
+- [나만의 Beat 만들기 - Youtube](https://www.youtube.com/watch?v=N3NbYQgiUn0)
 - [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
-- https://coding-groot.tistory.com/category/Git
-- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
+- [Git 명령어](https://coding-groot.tistory.com/category/Git)
+- [Git Tag 관련 명령어 정리](https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html)
 - [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
   `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
-- https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu
-- https://jepi.tistory.com/221
+- [Install the Latest Version of Golang on Ubuntu](https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu)
+- [ubuntu golang 설치과정](https://jepi.tistory.com/221)
 
 
 ```
