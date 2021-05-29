@@ -95,6 +95,8 @@ RUN rm -rf ~/.cache/pip
 	&& rm -rf $GOPATH/src/github.com/magefile
 ```
 
+<br/>
+
 ## 컨테이너 사용법 
 
 - 단계 1. 컨테이너 이미지 만들기
@@ -194,6 +196,8 @@ RUN rm -rf ~/.cache/pip
     },
   ```
 
+<br/>
+
 ## 개발 환경
 
 - 단계 1. VS Code 설치
@@ -205,7 +209,6 @@ RUN rm -rf ~/.cache/pip
 
 - 단계 3. VS Code에서 Container 접속
   
-
 + 단계 4. VS Code Container 확장 도구 설치
   - Go (Go Team at Google)
  
