@@ -123,12 +123,12 @@ RUN rm -rf ~/.cache/pip
 # cd $GOPATH/src/github.com/elastic/beats
 #
 # /go/src/github.com/elastic/beats# mage GenerateCustomBeat
-#   Enter the beat name [examplebeat]: lsbeat             			# beat 이름
-#   Enter your github name [your-github-name]: mirero     			# 조직 이름
-#   Enter the beat path [github.com/mirero/lsbeat]:       			# 생성될 $GOPATH/src 하위 폴더 경로
-#   Enter your full name [Firstname Lastname]:
-#   Enter the beat type [beat]:
-#   Enter the github.com/elastic/beats revision [master]: v7.9.1	# Beat 버전 : GitHub Tag 이름
+#    Enter the beat name [examplebeat]: lsbeat             			# beat 이름
+#    Enter your github name [your-github-name]: mirero     			# 조직 이름
+#    Enter the beat path [github.com/mirero/lsbeat]:       			# 생성될 $GOPATH/src 하위 폴더 경로
+#    Enter your full name [Firstname Lastname]:
+#    Enter the beat type [beat]:
+#    Enter the github.com/elastic/beats revision [master]: v7.9.1	        # Beat 버전 : GitHub Tag 이름
 #
 
 # 단계 6. 빌드 및 실행하기
