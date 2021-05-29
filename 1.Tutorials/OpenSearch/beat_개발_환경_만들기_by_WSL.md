@@ -1,4 +1,4 @@
-# Elastic Beat 개발 환경 만들기 by WSL
+# Elastic Beat 개발 환경 만들기 by WSL2
 
 ## 1. libbeat 이미지 만들기
 1. 7.10 브랜치 Dockerfile 다운로드
