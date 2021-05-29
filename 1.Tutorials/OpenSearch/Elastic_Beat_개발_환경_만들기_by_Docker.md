@@ -83,8 +83,8 @@ RUN go get github.com/godror/godror
 #
 RUN \
 	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
-	&& git config --global user.name "xyz" \
-	&& git config --global user.email "support@xyz.co.kr" 
+	&& git config --global user.name "mirero" \
+	&& git config --global user.email "support@mirero.co.kr" 
 	
 #
 # 단계 7. .cache의 pip 삭제
@@ -113,76 +113,76 @@ RUN rm -rf ~/.cache/pip
       - `-d` : --detach, Run container in background and print container ID
     - `--security-opt="apparmor=unconfined" --cap-add-SYS_PTRACT` : VS Code에서 보안 문제로 접속안될 때 추가 옵션
       ```
-	  could not launch process: ... operation not permitted
-	  ```
+      could not launch process: ... operation not permitted
+      ```
   - 컨테이너 접속 : `docker container exec -it beats bash`
   - 컨테이너 중지 : `docker container stop beats`
   - 컨테이너 제거 : `docker container rm beats`
 
 
 - 단계 5. 사용자 정의 Beat 템플릿 코드 만들기
-  - Creating a New Beat : https://www.elastic.co/guide/en/beats/devguide/current/new-beat.html
-  - Elasitc Beat Tags : https://github.com/elastic/beats/tags
   ```
   rm -rf ~/.cache/pip
   cd $GOPATH/src/github.com/elastic/beats
 
   /go/src/github.com/elastic/beats# mage GenerateCustomBeat
-     Enter the beat name [examplebeat]: lsbeat             		# beat 이름
-     Enter your github name [your-github-name]: mirero     		# 조직 이름
-     Enter the beat path [github.com/mirero/lsbeat]:       		# 생성될 $GOPATH/src 하위 폴더 경로
+     Enter the beat name [examplebeat]: lsbeat             	  # beat 이름
+     Enter your github name [your-github-name]: mirero     	  # 조직 이름
+     Enter the beat path [github.com/mirero/lsbeat]:       	  # 생성될 $GOPATH/src 하위 폴더 경로
      Enter your full name [Firstname Lastname]:
      Enter the beat type [beat]:
-     Enter the github.com/elastic/beats revision [master]: v7.9.1	        # Beat 버전 : GitHub Tag 이름(예. v7.9.1, v7.10.2)
+     Enter the github.com/elastic/beats revision [master]: v7.9.1   # Beat 버전 : GitHub Tag 이름(예. v7.9.1, v7.10.2)
   ```
+  - Creating a New Beat : https://www.elastic.co/guide/en/beats/devguide/current/new-beat.html
+  - Elasitc Beat Tags : https://github.com/elastic/beats/tags
 
-
-- 단계 6. 빌드 및 실행하기
++ 단계 6. 빌드 및 실행하기
   - 빌드
     ```
     cd $GOPATH/src/github.com/mirero/lsbeat
     make update		# 설정 파일 생성하기 : fields.yml, lsbeat.yml, lsbeat.reference.yml, lsbeat.docker.yml
     mage build		# 빌드
     ```
-    - go build -o lsbeat
-    - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"
-    - GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"
+    - `go build -o lsbeat`
+    - `GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
+    - `GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
     - TODO? x86, x64 빌드 방법
-- 실행 옵션 
-  ```
-  ./lsbeat -h
-  Usage:
-    lsbeat [flags]
-    lsbeat [command]
+  - 실행 옵션 
+    ```
+    ./lsbeat -h
   
-  Available Commands:
-    export      Export current config or index template
-    help        Help about any command
-    keystore    Manage secrets keystore
-    run         Run lsbeat
-    setup       Setup index template, dashboards and ML jobs
-    test        Test config
-    version     Show current version info
+    Usage:
+      lsbeat [flags]
+      lsbeat [command]
   
-  Flags:
-    -E, --E setting=value              Configuration overwrite
-    -N, --N                            Disable actual publishing for testing
-    -c, --c string                     Configuration file, relative to path.config (default "lsbeat.yml")
+    Available Commands:
+      export      Export current config or index template
+      help        Help about any command
+      keystore    Manage secrets keystore
+      run         Run lsbeat
+      setup       Setup index template, dashboards and ML jobs
+      test        Test config
+      version     Show current version info
+  
+    Flags:
+      -E, --E setting=value              Configuration overwrite
+      -N, --N                            Disable actual publishing for testing
+      -c, --c string                     Configuration file, relative to path.config (default "lsbeat.yml")
         --cpuprofile string            Write cpu profile to file
-    -d, --d string                     Enable certain debug selectors
-    -e, --e                            Log to stderr and disable syslog/file output
-        --environment environmentVar   set environment being ran in (default default)
-    -h, --help                         help for lsbeat
-        --httpprof string              Start pprof http server
-        --memprofile string            Write memory profile to this file
-        --path.config string           Configuration path
-        --path.data string             Data path
-        --path.home string             Home path
-        --path.logs string             Logs path
-        --plugin pluginList            Load additional plugins
-        --strict.perms                 Strict permission checking on config files (default true)
-    -v, --v                            Log at INFO level
-  ```
+      -d, --d string                     Enable certain debug selectors
+      -e, --e                            Log to stderr and disable syslog/file output
+          --environment environmentVar   set environment being ran in (default default)
+      -h, --help                         help for lsbeat
+          --httpprof string              Start pprof http server
+          --memprofile string            Write memory profile to this file
+          --path.config string           Configuration path
+          --path.data string             Data path
+          --path.home string             Home path
+          --path.logs string             Logs path
+          --plugin pluginList            Load additional plugins
+          --strict.perms                 Strict permission checking on config files (default true)
+      -v, --v                            Log at INFO level
+    ```
 - 실행 : Beat 버전 확인
   ```
   ./lsbeat -e -d "*"				# 디거그 모드 콘솔 출력
