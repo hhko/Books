@@ -1,6 +1,9 @@
 # Elastic Beat 개발 환경 만들기 by Docker
 
 ## [Dockerfile](./Dockerfile)
+- 라이선스 이슈로 7.10 버전으로 개발한다.
+  - [Elastic 라이선스를 변경해야 했던 이유](https://www.elastic.co/kr/blog/why-license-change-AWS) 
+  - [Elasticsearch를 둘러싼 AWS와 Elastic의 대립](https://blog.opsnow.com/35)
 ```dockerfile
 #
 # 단계 1. libbeat 이미지 만들기
@@ -51,7 +54,7 @@ RUN \
 
 	
 #
-# 단계 4. oracle driver 설치
+# 단계 4. oracle driver 설치(oracle 모니터링 개발을 위해서 설치한다)
 #  - 버전 : 21.1.0.0.0(2021-05-29 기준)
 #  - 사이트 : https://www.oracle.com/kr/database/technologies/instant-client/linux-x86-64-downloads.html
 #  - oracle-instantclient-basic-21.1.0.0.0-1.x86_64
@@ -70,18 +73,18 @@ RUN \
 
 	
 #
-# 단계 5. godror 설치 : Oracle Go 패키지
+# 단계 5. godror 설치 : Oracle Go 패키지(oracle 모니터링 개발을 위해서 설치한다)
 #
 RUN go get github.com/godror/godror  
 
 
 #
-# 단계 6. beats 7.10 브랜치 소스 받기
+# 단계 6. beats 7.10 브랜치 소스 받기(name과 이름은 변경한다)
 #
 RUN \
 	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
-	&& git config --global user.name "mirero" \
-	&& git config --global user.email "support@mirero.co.kr" 
+	&& git config --global user.name "xyz" \
+	&& git config --global user.email "support@xyz.co.kr" 
 	
 #
 # 단계 7. .cache의 pip 삭제
@@ -130,7 +133,7 @@ RUN rm -rf ~/.cache/pip
      Enter the beat path [github.com/mirero/lsbeat]:       		# 생성될 $GOPATH/src 하위 폴더 경로
      Enter your full name [Firstname Lastname]:
      Enter the beat type [beat]:
-     Enter the github.com/elastic/beats revision [master]: v7.9.1	        # Beat 버전 : GitHub Tag 이름
+     Enter the github.com/elastic/beats revision [master]: v7.9.1	        # Beat 버전 : GitHub Tag 이름(예. v7.9.1, v7.10.2)
   ```
 
 
