@@ -11,15 +11,14 @@
 #
 FROM golang:1.14.12
 
-RUN \
-	apt-get update \
-		&& apt-get install -y --no-install-recommends \
-         		netcat \
-         		libpcap-dev \
-         		python3 \
-         		python3-pip \
-         		python3-venv \
-      		&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+        	netcat \
+        	libpcap-dev \
+        	python3 \
+        	python3-pip \
+        	python3-venv \
+      	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --upgrade pip==20.1.1
 RUN pip3 install --upgrade setuptools==47.3.2
@@ -35,22 +34,20 @@ RUN mkdir -p /etc/pki/tls/certs
 #  - libaio1 : Linux kernel AIO access library - shared library
 #  - libaio-dev : Linux kernel AIO access library - development files
 #
-RUN \
-	apt-get -y update \
-		&& apt-get install -y --no-install-recommends \
-			alien \
-			libaio1 \
-			libaio-dev \
-		&& rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update \
+	&& apt-get install -y --no-install-recommends \
+		alien \
+		libaio1 \
+		libaio-dev \
+	&& rm -rf /var/lib/apt/lists/*
 
 	
 #
 # 단계 3. Go 빌드 패키지 mage 설치
 #	
-RUN \
-	go get -u -d github.com/magefile/mage \
-		&& cd $GOPATH/src/github.com/magefile/mage \
-		&& go run bootstrap.go 
+RUN go get -u -d github.com/magefile/mage \
+	&& cd $GOPATH/src/github.com/magefile/mage \
+	&& go run bootstrap.go 
 
 	
 #
@@ -61,15 +58,14 @@ RUN \
 #  - oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64
 #  - oracle-instantclient-devel-21.1.0.0.0-1.x86_64
 #
-RUN \
-	cd /tmp \
-		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
-		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
-		&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
-		&& alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
-		&& alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
-		&& alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
-		&& rm -rf /tmp/* 
+RUN cd /tmp \
+	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
+	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
+	&& wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
+	&& alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm \
+	&& alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm \
+	&& alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm \
+	&& rm -rf /tmp/* 
 
 	
 #
@@ -81,10 +77,9 @@ RUN go get github.com/godror/godror
 #
 # 단계 6. beats 7.10 브랜치 소스 받기(name과 email은 변경한다)
 #
-RUN \
-	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
-		&& git config --global user.name "mirero" \
-		&& git config --global user.email "support@mirero.co.kr" 
+RUN git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
+	&& git config --global user.name "mirero" \
+	&& git config --global user.email "support@mirero.co.kr" 
 	
 #
 # 단계 7. .cache의 pip 삭제
