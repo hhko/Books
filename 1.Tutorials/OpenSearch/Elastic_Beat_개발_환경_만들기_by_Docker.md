@@ -110,7 +110,7 @@ RUN \
   - `docker iamge load -i beats_dev_7.10.tar`
 
 + 단계 4. 컨테이너 실행 및 접속하기
-  - `docker container run -itd --name beats beats/dev:7.10`
+  - 컨테이너 실행 : `docker container run -itd --name beats beats/dev:7.10`
     - `-itd` : 백그라운드로 실행하면서 대화형 쉘을 제공한다(실행 후에 shell 접속을 허용하기 위해서는 it 옵션이 필요한다).
       - `-i` : --interactive, Keep STDIN open even if not attached
       - `-t` : --tty, Allocate a pseudo-TTY
@@ -119,7 +119,7 @@ RUN \
       ```
 	  could not launch process: ... operation not permitted
 	  ```
-  - 컨테이너 실행 : `docker container exec -it beats bash`
+  - 컨테이너 접속 : `docker container exec -it beats bash`
   - 컨테이너 중지 : `docker container stop beats`
   - 컨테이너 제거 : `docker container rm beats`
 
