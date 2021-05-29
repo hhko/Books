@@ -342,7 +342,7 @@ Flags:
        ```
 
 ## VS Code 디버깅 환경 구성
-1. VS Code launch.json 설정 : Debug > create a launch.json file > Go: Launch package
+1. VS Code launch.json 설정 : `Debug > create a launch.json file > Go: Launch package` 또는 `메뉴 > Run > Add Configuration... > Go: Launch Package`
    ```json
    {
        "version": "0.2.0",
