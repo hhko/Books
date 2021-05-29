@@ -373,7 +373,7 @@ Flags:
        - 21은 oracle driver 버전이다.
        - TODO? C_INCLUDE_PATH 
    - args
-1. VS Code launch.json 설정 : Ctrl+Shift+P > settings.json 입력 > Perferences: Open Workspace Settings(JSON)
+1. VS Code settings.json 설정 : Ctrl+Shift+P > settings.json 입력 > Perferences: Open Workspace Settings(JSON)
    ```json
    {
        "go.toolsEnvVars": {
@@ -397,6 +397,13 @@ Flags:
    - F5 : 디버깅
      - 구성 변경 및 go package 등이 변경되었다면 오류가 발생할 수 있다.
      - mage build 명령어로 재구성을 해야한다.
+1. Oracle 한국어 설정
+   - /etc/bash.bashrc  
+   - export NLS_LANG=AMERICAN_AMERICA.KO16KSC5601
+   - source /etc/bash.bashrc 
+1. mage 빌드
+   - mage build : 리눅스 빌드
+   - mage crossbuild : 도커 빌드까지 포함
 
 ## Beat 파일 구성
 1. 작업 파일
