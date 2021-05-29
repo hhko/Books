@@ -107,7 +107,7 @@ RUN \
   - `docker image save -o beats_dev_7.10.tar beats/dev:7.10`
 
 - 단계 3. 컨테이너 이미지 가져요기(image <- .tar 파일)
-  - `docker iamge load -i beats_dev_7.10.tar 
+  - `docker iamge load -i beats_dev_7.10.tar`
 
 + 단계 4. 컨테이너 실행 및 접속하기
   - `docker container run -itd --name beats beats/dev:7.10`
