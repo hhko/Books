@@ -1,6 +1,6 @@
 # Elastic Beat 개발 환경 만들기 by Docker
 
-## Dockerfile : [파일 다운로드](./Dockerfile)
+## [Dockerfile](./Dockerfile)
 ```dockerfile
 #
 # 단계 1. libbeat 이미지 만들기
