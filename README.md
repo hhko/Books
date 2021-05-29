@@ -14,6 +14,7 @@
 
 ## Contents
 1. Tutorials
+   - [OpenSearch](./1.Tutorials/OpenSearch)
    - Observability
      - [NLog](./1.Tutorials/Observability/NLog)
      - [Serilog](./1.Tutorials/Observability/Serilog)
