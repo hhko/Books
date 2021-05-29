@@ -268,4 +268,4 @@ RUN rm -rf ~/.cache/pip
     - CGO : Go에서 C코드 호출할 수 있도록 하는 기능(크로스 컴파일링 시 비활성화된다.)
   - go.buildFlags : Go 빌드 플래그
     - go build -o lsbeat
-  - F5 디버깅
+  - F5 디버깅 : 처음 디버깅 실행할 때는 main.go 파일에서 시작한다. 
