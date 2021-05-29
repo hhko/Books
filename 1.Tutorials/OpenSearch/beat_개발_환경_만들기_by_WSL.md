@@ -1,3 +1,5 @@
+# Elastic Beat 개발 환경 만들기 by WSL
+
 ## 1. libbeat 이미지 만들기
 1. 7.10 브랜치 Dockerfile 다운로드
    - https://github.com/elastic/beats/blob/7.10/libbeat/Dockerfile
@@ -446,54 +448,6 @@ Flags:
    - 참고 사이트
      - [push할 때, warning: url has no scheme 오류](https://smecsm.tistory.com/121) 
 
-## 참고 사이트
-- [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
-- https://coding-groot.tistory.com/category/Git
-- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
-- [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
-  `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
-- https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu
-- https://jepi.tistory.com/221
-
-
-## TODO
-1. LsBeat 컴파일
-1. LsBeat 자료구조 정리
-1. Golang Windows 빌드
----
-1. OracleBeat 컴파일
-1. OracleBeat 자료구조 정리
-1. OracleBeat 배포 방법?
----
-1. Docker Host 네트워크
-1. 원격에서 WSL2 접근
----
-1. 모든 개발 환겨이 구성된 도커 이미지
-
-```
-Error response from daemon: i/o timeout
-
-1. Open "Window Security"
-2. Open "App & Browser control"
-3. Click "Exploit protection settings" at the bottom
-4. Switch to "Program settings" tab
-5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
-6. Click "Edit"
-7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
-8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
-9. Start vmcompute from powershell "net start vmcompute"
-
-1. Open "Window Security"
-2. Open "App & Browser control"
-3. Click "Exploit protection settings" at the bottom
-4. Switch to "Program settings" tab
-5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
-6. Click "Edit"
-7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
-8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
-9. Start vmcompute from powershell "net start vmcompute"
-```
-
 ## Go 설치 Shell Script : `chmod +x setup_beat_env.sh`
 ```bash
 #!/bin/bash
@@ -531,6 +485,7 @@ wget https://download.oracle.com/otn_software/linux/instantclient/211000/oracle-
 alien -i oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
 alien -i oracle-instantclient-sqlplus-21.1.0.0.0-1.x86_64.rpm
 alien -i oracle-instantclient-devel-21.1.0.0.0-1.x86_64.rpm
+rm -rf /tmp/*
 
 #
 # 4. godror 설치 : Oracle Go 패키지
@@ -571,9 +526,39 @@ cd $GOPATH/src/github.com/elastic/beats
 ## mage build
 ## ./lsbeat -c lsbeat.yml -e -d "*"
 
-##
-## chmod +x setup_beat_env.sh
-##
-
 exit 0
+```
+
+## 참고 사이트
+- [Beats Developer Guide](https://www.elastic.co/guide/en/beats/devguide/current/index.html)
+- https://coding-groot.tistory.com/category/Git
+- https://seizze.github.io/2019/12/24/Git-Tag-%EA%B4%80%EB%A0%A8-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC.html
+- [Ubuntu 18.04 Golang 설치](https://antilibrary.org/2594)  
+  `sudo echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc`
+- https://www.vultr.com/docs/install-the-latest-version-of-golang-on-ubuntu
+- https://jepi.tistory.com/221
+
+
+```
+Error response from daemon: i/o timeout
+
+1. Open "Window Security"
+2. Open "App & Browser control"
+3. Click "Exploit protection settings" at the bottom
+4. Switch to "Program settings" tab
+5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
+6. Click "Edit"
+7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
+8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
+9. Start vmcompute from powershell "net start vmcompute"
+
+1. Open "Window Security"
+2. Open "App & Browser control"
+3. Click "Exploit protection settings" at the bottom
+4. Switch to "Program settings" tab
+5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
+6. Click "Edit"
+7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
+8. Delete all files from C:\Users\<name>\AppData\Roaming\Docker
+9. Start vmcompute from powershell "net start vmcompute"
 ```
