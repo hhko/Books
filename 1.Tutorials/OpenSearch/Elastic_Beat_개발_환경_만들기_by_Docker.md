@@ -79,7 +79,7 @@ RUN go get github.com/godror/godror
 
 
 #
-# 단계 6. beats 7.10 브랜치 소스 받기(name과 이름은 변경한다)
+# 단계 6. beats 7.10 브랜치 소스 받기(name과 email은 변경한다)
 #
 RUN \
 	git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
