@@ -139,9 +139,12 @@ RUN rm -rf ~/.cache/pip
     mage build		# 빌드
     ```
     - `go build -o lsbeat`
-    - `GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
-    - `GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
-    - TODO? x86, x64 빌드 방법
+    - 32Bit
+      - `GOOS=linux GOARCH=386 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
+      - `GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
+    - 64Bit
+      - `GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
+      - `GOOS=windows GOARCH=amd64 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
   - 실행 옵션 
     ```
     ./lsbeat -h
