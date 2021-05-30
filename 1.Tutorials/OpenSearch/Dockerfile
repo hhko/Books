@@ -130,9 +130,12 @@ RUN rm -rf ~/.cache/pip
 # make update								# 설정 파일 생성하기 : fields.yml, lsbeat.yml, lsbeat.reference.yml, lsbeat.docker.yml
 # mage build								# 빌드
 #  - go build -o lsbeat
-#  - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"
-#  - GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"
-#  - TODO? x86, x64 빌드 방법
+#  - 32Bit
+#    - `GOOS=linux GOARCH=386 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
+#    - `GOOS=windows GOARCH=386 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
+#  - 64Bit
+#    - `GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o lsbeat -ldflags "-X main.qualifier=mirero"`
+#    - `GOOS=windows GOARCH=amd64 go build -o lsbeat_x86.exe -ldflags "-X main.qualifier=mirero"`
 # ./lsbeat -h								# 명령 및 옵션 확인
 ## Usage:
 ##   lsbeat [flags]
