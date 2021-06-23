@@ -51,5 +51,6 @@
    - Awesome
      - [Domain-Driven Design](./4.Blogs/Awesome/DDD)
      - [Functional Programming](./4.Blogs/Awesome/FP)
-
+1. TODOs
+   - [ ] [Adding distributed tracing instrumentation](https://docs.microsoft.com/ko-kr/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
 
