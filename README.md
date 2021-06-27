@@ -34,6 +34,7 @@
 1. Lectures
    - Domain-Driven Design
      - [Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)
+	 - **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
    - Functional Programming
      - [Defensive Programming](./3.Lectures/FP/DefensiveProgramming)
      - [Writing Purely Functional Code In C#](./3.Lectures/FP/WritingPurelyFunctionalCodeInCSharp)
