@@ -44,9 +44,17 @@
       return Ok(response);
   }
   ```
-  - "Valiation 코드 > Production 코드" 보다 많다.
+  - Valiation 코드량이 Production 코드량 보다 많다.
   - 모든 Validation 실패 목록을 전달할 수도 있어야 한다(지금은 Valiation 첫 실패 정보다 먼달한다).
   - Biz. Valiation과 구분할 수 있어야 한다.
+    ```cs
+	// Biz. 규칙
+    if (_enrollments.Count >= 2)
+        throw new Exception("Cannot have more than 2 enrollments");
+    
+    if (_enrollments.Any(x => x.Course == course))
+        throw new Exception($"Student '{Name}' already enrolled into course '{course.Name}'");
+	```
 
 ## 기본 정보
 - localhost:5000
