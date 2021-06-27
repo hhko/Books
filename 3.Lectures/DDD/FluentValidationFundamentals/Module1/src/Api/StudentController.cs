@@ -21,6 +21,7 @@ namespace Api
         [HttpPost]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
+			/*
             if (request == null)
                 return BadRequest("Request cannot be null");
 
@@ -43,6 +44,7 @@ namespace Api
                 return BadRequest("Address is too long");
 
             // Return a list of errors, not just the first one
+			*/
 
             var student = new Student(request.Email, request.Name, request.Address);
             _studentRepository.Save(student);
