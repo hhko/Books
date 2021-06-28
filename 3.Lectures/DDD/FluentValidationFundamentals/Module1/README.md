@@ -1,5 +1,14 @@
 # Module 1. 예제 프로그램 소개
-- Validation 필요성 인식
+
+## 목차
+- Validation 설계 필요성
+- 실행 정보
+- API
+- 폴더 구성
+- VS Code 명령어
+
+## Validation 설계 필요성
+- Validation 기본 코드
   ```cs
   [HttpPost]
   public IActionResult Register([FromBody] RegisterRequest request)
@@ -56,11 +65,11 @@
         throw new Exception($"Student '{Name}' already enrolled into course '{course.Name}'");
 	```
 
-## 기본 정보
+## 실행 정보
 - localhost:5000
 - http://localhost:5000/swagger
 
-## API 소개
+## API
 - 학생 조회 : `GET ​/api​/students​/{id}`
   ```json
   {
@@ -107,4 +116,42 @@
   }
   ```
   
+## 폴더 구성
+- 주요 폴더 구성
+  ```
+  Module1
+    └ .sln
+    └ README.md
+    └ doc                  // 문서
+    └ src
+       └ Api               // WebApi 프로젝트
+       └ DomainModel       // ClassLib 프로젝트
+  ```
+
+## VS Code 명령어
+- 솔루션 
+  - `dotnet new sln -n [솔루션명]`
+  - `dotnet sln [솔루션명].sln add [프로젝트명(상대경로)].csproj`
+  - `dotnet sln [솔루션명].sln remove [프로젝트명(상대경로)].csproj`
+  - `dotnet sln [솔루션명].sln list`
+- 프로젝트 : reference/package
+  - `dotnet new classlib -n [프로젝트명] -o [프로젝트명]` : -o 생략 가능(-n와 동일)
+  - `dotnet add [프로젝트명].csproj reference [프로젝트명(상대경로)].csproj` : 프로젝트 경로에서는 [프로젝트명].csproj을 생략할 수 있다.
+  - `dotnet remove [프로젝트명].csproj reference [프로젝트명(상대경로)].csproj`
+  - `dotnet list [프로젝트명].csproj reference`
+  - `dotnet add [프로젝트명].csproj package [패키지명] -v [버전]` : 프로젝트 경로에서는 [프로젝트명].csproj을 생략할 수 있다.
+  - `dotnet remove [프로젝트명].csproj package [패키지명]`
+  - `dotnet list [프로젝트명].csproj package`
+    - `--outdated`
+    - `--include-prerelease`
+
+## 참고 자료
+- [dotnet sln](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-sln)
+- [dotnet new](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-new)
+- [dotnet add reference](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-add-reference)
+- [dotnet remove reference](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-remove-reference)
+- [dotnet list reference](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-list-reference)
+- [dotnet add package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-add-package)
+- [dotnet remove package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-remove-package)
+- [dotnet list package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-list-package)
   
