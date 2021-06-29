@@ -30,5 +30,8 @@
 + **MVVM**
   - ReactiveUI
   - MvvmCross
-- **Log**
+- **Web**
+  - [Playwright-dotnet](https://github.com/microsoft/playwright-dotnet)
+  - [Selenium](https://github.com/SeleniumHQ/selenium)
++ **Log**
    - [Serilog.Sinks.InMemory](https://github.com/serilog-contrib/SerilogSinksInMemory)
