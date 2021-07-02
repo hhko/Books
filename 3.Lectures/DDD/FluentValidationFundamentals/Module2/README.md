@@ -8,8 +8,8 @@
   - 인터페이스
 
 ## Fluent Validation
-- Primitive 
-- Object
+- Simple properties
+- Comple properties 
 - Collection
-- ~~Inheritance~~
+- ~~Inheritance~~ -> DomainModel
 - ~~Rule seet(CRUD-based)~~ -> Task-based
