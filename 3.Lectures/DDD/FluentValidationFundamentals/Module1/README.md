@@ -5,11 +5,10 @@
 - Validation 설계 필요성
 - API
 - 폴더 구성
-- VS Code 명령어
 
 ## 실행 정보
 - http://localhost:5000/swagger  
-  ![][./Doc/Swagger.png]
+  <img src="./doc/Swagger.png" width="600"/>
 
 ## Validation 설계 필요성
 - Validation이 **없는** 구현 : Production 코드
@@ -101,7 +100,7 @@
 	   ```
 
 ## API
-- 학생 조회 : `GET ​/api​/students​/{id}`
+- 학생 조회 : `GET ​/api​/students​/{id}`, 예. `GET ​/api​/students​/1`
   ```json
   {
       "name": "Alice Alison",
@@ -123,7 +122,7 @@
       "address": "3456 3rd St, Carlington, VA, 22203"
   }
   ```
-- 학생 변경 : `PUT ​/api​/students​/{id}`
+- 학생 변경 : `PUT ​/api​/students​/{id}`, 예. `PUT ​/api​/students​/3`
   ```json
   {
       "name": "Carl Carlson Jr",
@@ -131,7 +130,7 @@
   }
   ```
 
-- 학생 변경(등록) : `POST ​/api​/students​/{id}​/enrollments`
+- 학생 변경(등록) : `POST ​/api​/students​/{id}​/enrollments`, 예. `POST ​/api​/students​/3​/enrollments`
   ```json
   {
       "enrollments": [
