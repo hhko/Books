@@ -18,8 +18,8 @@
   public IActionResult Register([FromBody] RegisterRequest request)
   {
       //
-	  // Production 코드
-	  //
+      // Production 코드
+      //
       var student = new Student(request.Email, request.Name, request.Address);
       _studentRepository.Save(student);
 
@@ -36,8 +36,8 @@
   public IActionResult Register([FromBody] RegisterRequest request)
   {
       //
-	  // Valiation 코드
-	  //
+      // Valiation 코드
+      //
       if (request == null)
           return BadRequest("Request cannot be null");
 
@@ -63,8 +63,8 @@
 
 
       //
-	  // Production 코드
-	  //
+      // Production 코드
+      //
       var student = new Student(request.Email, request.Name, request.Address);
       _studentRepository.Save(student);
 
@@ -77,12 +77,15 @@
   ```
 - Validation이 **없는** vs. **있는** 구현 
   1. Validation 코드가 Production 코드 보다 많다.
-  1. Validation 실패는 첫 실패 또는 전체 실패 정보를 전달할 수 있어야 한다(현재 Validation 코드는 첫 실패 정보만 제공한다).
-  1. Validation 대상은 Data Contract과 DomainModel으로 구분할 수 있어야 한다.
+  2. Validation 실패는 첫 실패 또는 전체 실패 정보를 전달할 수 있어야 한다(현재 Validation 코드는 첫 실패 정보만 제공한다).
+  3. Validation 대상은 Data Contract과 DomainModel으로 구분할 수 있어야 한다.
      - Data Contract Validation
        ```cs
+       // Name 데이터는 NULL 또는 공백이면 안된다.
        if (string.IsNullOrWhiteSpace(request.Name))
            return BadRequest("Name cannot be empty");
+	   
+       // Name 길이는 200을 초과해서는 안된다.
        if (request.Name.Length > 200)
            return BadRequest("Name is too long");
        ```
