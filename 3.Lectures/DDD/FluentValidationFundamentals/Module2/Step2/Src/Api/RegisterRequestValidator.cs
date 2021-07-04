@@ -53,7 +53,7 @@ namespace Api
             // RuleFor(x => x.Address.State).NotEmpty().Length(0, 2).When(x => x.Address != null);
             // RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5).When(x => x.Address != null);
 
-            // Case 3.
+            // Case 3. Sub-Validator : SetValidator
             RuleFor(x => x.Address).NotNull().SetValidator(new AddressVilidator());
             
 

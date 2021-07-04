@@ -1,4 +1,4 @@
-# Module 2. |> Step 2. Complex Properties Validation 이해
+# Module 2. |> Step 2. Complex Properties Validation 이해하기
 
 ## 목차
 - Data Contract vs. Domain Model

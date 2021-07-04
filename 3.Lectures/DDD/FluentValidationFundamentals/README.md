@@ -4,10 +4,11 @@
 
 ## 목차
 - Module 1
-  - [Step 1 : 예제 프로그램 소개](./Module1/Step1)
+  - [Step 1 : 예제 프로그램 이해하기](./Module1/Step1)
 - Module 2
-  - [Step 1 : Simple Properties Validation 이해](./Module2/Step1)
-  - [Step 2 : Complex Properties Validation 이해](./Module2/Step2)
+  - [Step 1 : Simple Properties Validation 이해하기](./Module2/Step1)
+  - [Step 2 : Complex Properties Validation 이해하기](./Module2/Step2)
+  - Step 3 : Validation 코드 중복 제거하기
 
 ## 주요 학습
 ## Data Contract vs. Domain Model

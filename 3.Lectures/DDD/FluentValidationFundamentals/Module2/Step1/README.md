@@ -1,4 +1,4 @@
-# Module 2. |> Step 1. FluentValidation 패키지 이해
+# Module 2. |> Step 1. Simple Properties Validation 이해하기
 
 ## 목차
 - FluentValidation 개요
