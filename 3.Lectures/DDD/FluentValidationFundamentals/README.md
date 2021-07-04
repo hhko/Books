@@ -1,6 +1,8 @@
 # FluentValidation Fundamentals
 - [Fluentvalidation fundamentals 강의](https://www.pluralsight.com/courses/fluentvalidation-fundamentals)
+- [Fluentvalidation fundamentals 강의 소스](https://github.com/vkhorikov/ValidationInDDD)
 - [FluentValidation](https://docs.fluentvalidation.net/en/latest/installation.html)
+- [OSS Power-Ups: FluentValidation](https://www.youtube.com/watch?v=ePrWPblO-H4)
 
 ## 목차
 - Module 1
@@ -23,6 +25,7 @@
   - Register **Request** Validator : Registration input data
   - Register Validator : Registration functionality, Unit tests
 
+```
 ## Fluent Validation
 - Simple properties
 - Comple properties 
@@ -37,6 +40,7 @@
   - Don't reuese data contracts : x
 - Throw exception
   - Validations ≠ Exceptional situation
+```
 
 ## VS Code 명령어
 - dotnet 
