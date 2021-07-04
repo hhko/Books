@@ -13,6 +13,7 @@
     - `Data Contract vs. Domain Model`
   - Step 3 : Validation 코드 중복 제거하기
 
+```
 ## 주요 학습
 ## Data Contract vs. Domain Model
 - Validates request data, not the domain class
@@ -25,7 +26,6 @@
   - Register **Request** Validator : Registration input data
   - Register Validator : Registration functionality, Unit tests
 
-```
 ## Fluent Validation
 - Simple properties
 - Comple properties 
