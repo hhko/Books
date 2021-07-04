@@ -100,7 +100,7 @@
 	   ```
 
 ## Domain Model
-<img src="./Doc/DomainModel.png/>
+<img src="./Doc/DomainModel.png"/>
 
 ## API
 - 학생 조회 : `GET ​/api​/students​/{id}`, 예. `GET ​/api​/students​/1`
