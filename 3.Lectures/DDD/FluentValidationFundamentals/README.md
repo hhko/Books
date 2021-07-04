@@ -8,7 +8,7 @@
 - Module 2
   - [Step 1 : Simple Properties Validation 이해하기](./Module2/Step1)
   - [Step 2 : Complex Properties Validation 이해하기](./Module2/Step2)
-    - Data Contract vs. Domain Model 차이 이해 
+    - `Data Contract vs. Domain Model`
   - Step 3 : Validation 코드 중복 제거하기
 
 ## 주요 학습
