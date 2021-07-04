@@ -99,6 +99,9 @@
            throw new Exception($"Student '{Name}' already enrolled into course '{course.Name}'");
 	   ```
 
+## Domain Model
+<img src="./Doc/DomainModel.png/>
+
 ## API
 - 학생 조회 : `GET ​/api​/students​/{id}`, 예. `GET ​/api​/students​/1`
   ```json
