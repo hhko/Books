@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using DomainModel;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api
@@ -21,30 +22,22 @@ namespace Api
         [HttpPost]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
-			/*
             //
             // Data Contract Valiation 코드
             //
+            var validator = new RegisterRequestValidator();
+            ValidationResult result = validator.Validate(request);
+
+            if (result.IsValid == false)
+            {
+                return BadRequest(result.Errors[0].ErrorMessage);
+            }
+
+			/*
             if (request == null)
                 return BadRequest("Request cannot be null");
 
-            if (string.IsNullOrWhiteSpace(request.Name))
-                return BadRequest("Name cannot be empty");
-            if (request.Name.Length > 200)
-                return BadRequest("Name is too long");
-
-            if (string.IsNullOrWhiteSpace(request.Email))
-                return BadRequest("Email cannot be empty");
-            if (request.Email.Length > 150)
-                return BadRequest("Email is too long");
-            if (!Regex.IsMatch(request.Email, @"^(.+)@(.+)$"))
-                return BadRequest("Email is invalid");
             // Email should be unique.
-
-            if (string.IsNullOrWhiteSpace(request.Address))
-                return BadRequest("Address cannot be empty");
-            if (request.Address.Length > 150)
-                return BadRequest("Address is too long");
 
             // Return a list of errors, not just the first one
 			*/

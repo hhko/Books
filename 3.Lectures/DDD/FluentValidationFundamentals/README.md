@@ -3,10 +3,44 @@
 - [FluentValidation](https://docs.fluentvalidation.net/en/latest/installation.html)
 
 ## 목차
-- [Step 1](./Step1) : 예제 프로그램 소개
-- [Step 2](./Step2) : 
+- Module 1
+  - [Step 1 : 예제 프로그램 소개](./Module1/Step1)
+- Module 2
+ - [Step 1 : Simple Properties Validation 이해](./Module2/Step1)
+ - [Step 2 : Complex Properties Validation 이해](./Module2/Step2)
+
+## 주요 학습
+## Data Contract vs. Domain Model
+- Validates request data, not the domain class
+  - Data Contract Validation vs. DomainModel Validation
+    - Data Contract : public interface
+    - DomainModel : Modeling the problem domain
+  - Domain class ≠ Data contracts
+    - Always keep the domain model separate from data contracts
+- Register **Request** Validator vs. Register Validator
+  - Register **Request** Validator : Registration input data
+  - Register Validator : Registration functionality, Unit tests
+
+## Fluent Validation
+- Simple properties
+- Comple properties 
+  - Inline validation rules : x(Code duplication, Verboseness)
+  - Separate validator :  
+- Collection
+- ~~Inheritance~~ -> DomainModel
+  - Setting up rules polymorphically : o
+  - Only applicable to domain class : x
+- ~~Rule seet(CRUD-based)~~ -> Task-based
+  - Reusing validators : o
+  - Don't reuese data contracts : x
+- Throw exception
+  - Validations ≠ Exceptional situation
 
 ## VS Code 명령어
+- dotnet 
+  - `new` 솔루션/프로젝트
+    - 솔루션 `add/remove` 프로젝트
+      - `add/remove` 프로젝트 reference/package 프로젝트/패키지
 - 솔루션 
   - `dotnet new sln -n [솔루션명]`
   - `dotnet sln [솔루션명].sln add [프로젝트명(상대경로)].csproj`
@@ -22,6 +56,7 @@
   - `dotnet list [프로젝트명].csproj package`
     - `--outdated`
     - `--include-prerelease`
+  - `dotnet restore`  
 
 ## 참고 자료
 - [dotnet sln](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-sln)
@@ -32,3 +67,4 @@
 - [dotnet add package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-add-package)
 - [dotnet remove package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-remove-package)
 - [dotnet list package](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-list-package)
+- [dotnet restore](https://docs.microsoft.com/ko-kr/dotnet/core/tools/dotnet-restore)
