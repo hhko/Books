@@ -11,13 +11,10 @@
   - Sub-Validator 
 
 ## Data Contract vs. Domain Model
-- `Data Contract`와 `Domain Model`은 서로 다른 책임을 갖고 있다.  
-  ※ `Domain Model` 클래스와 `Data Contract` 클래스는 항상 분리 시켜야 한다.  
-  ※ `Domain Model` 클래스와 `Data Contract` 클래스는 책임이 다르기 때문에 코드 중복이 이나다.  
-  - 책임 : `Data Contract ≠ Domain Model`
-    - **`Data Contract` : Public Interface(외부 환경 : 사용자 입력 데이터), 이전 버전과 호환성**
-    - **`Domain Model` : Modeling the problem domain**
-  - 예. 코드 중복이 발생하지만 책임이 다르기 때문에 클래스를 분리 시킨다.
+- `Data Contract ≠ Domain Model` 책임은 서로 다르다.  
+  - **`Data Contract` : Public Interface(외부 환경 : 사용자 입력 데이터), 이전 버전과 호환성**
+  - **`Domain Model` : Modeling the problem domain**  
+  - 예. 코드 중복이 발생하지만 책임이 다르기 때문에 클래스를 항상 분리 시커야 한다.
     ```cs
     public class AddressDto   // Data Contract
     { 
@@ -42,7 +39,7 @@
     ``` 
 
 ## Complex Properties Validation
-- Case 1. Inline 버그 有 : Address가 NULL일 때
+- ~~Case 1. Inline 버그 有 : Address가 NULL일 때~~
   ```cs
   RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100);
   RuleFor(x => x.Address.City).NotEmpty().Length(0, 40);
@@ -50,7 +47,7 @@
   RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5);
   ```
   - FluentValidation은 `x.Address`가 `NULL`일 경우를 판단하지 않는다(NullException 예외 발생).
-- Case 2. Inline 버그 無 : Address가 NULL일 때
+- ~~Case 2. Inline 버그 無 : Address가 NULL일 때~~
   ```cs
   RuleFor(x => x.Address).NotNull();    // NULL 유효성 검사
   RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100).When(x => x.Address != null);
