@@ -71,4 +71,5 @@
   }
   ```
   - `Inline nested rules` 보다 더 Clean한 코드이다.
-<img src="./Doc/SeparateValidator.png"/>
+- 구현 코드  
+  <img src="./Doc/SeparateValidator.png" width="700"/>
