@@ -32,10 +32,14 @@ namespace DomainModel
 
         public virtual void Enroll(Course course, Grade grade)
         {
-            // Biz. 규칙
+            //
+            // DomainModel Validation
+            //
+            //  Name 데이터는 NULL 또는 공백이면 안된다.
             if (_enrollments.Count >= 2)
                 throw new Exception("Cannot have more than 2 enrollments");
             
+            // Name 길이는 200을 초과해서는 안된다.
             if (_enrollments.Any(x => x.Course == course))
                 throw new Exception($"Student '{Name}' already enrolled into course '{course.Name}'");
 

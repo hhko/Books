@@ -22,6 +22,9 @@ namespace Api
         public IActionResult Register([FromBody] RegisterRequest request)
         {
 			/*
+            //
+            // Data Contract Valiation 코드
+            //
             if (request == null)
                 return BadRequest("Request cannot be null");
 
@@ -46,6 +49,9 @@ namespace Api
             // Return a list of errors, not just the first one
 			*/
 
+            //
+            // Production 코드
+            //
             var student = new Student(request.Email, request.Name, request.Address);
             _studentRepository.Save(student);
 
