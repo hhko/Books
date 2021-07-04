@@ -1,17 +1,27 @@
-# Module 1. 예제 프로그램 소개
+# Step 1. 예제 프로그램 소개
 
 ## 목차
+- 목표
 - 실행 정보
 - Validation 설계 필요성
 - API
 - 폴더 구성
+
+## 목표
+- Validation 설계 필요성 인식
+  - "Data Contract Validation 코드 > Production 코드" 부작용
+  - Validation 실패 정보(첫 번째만, 모든 실패)
+  - `Data Contract` Validation과 `DomainModel` Validation 구분 필요  
+- 예제 프로그램 구성 이해
+  - DomainModel : `Enrollment`, `Student`, `Course`, `Grade`
+  - API  
 
 ## 실행 정보
 - http://localhost:5000/swagger  
   <img src="./Doc/Swagger.png" width="600"/>
 
 ## Validation 설계 필요성
-- Validation이 **없는** 구현 : Production 코드
+- Data Contract Validation이 **없는** 구현 : Production 코드
   ```cs
   [HttpPost]
   public IActionResult Register([FromBody] RegisterRequest request)
@@ -29,13 +39,13 @@
       return Ok(response);
   }
   ```
-- Validation이 **있는** 구현 : Valiation 코드 + Production 코드
+- Data Contract Validation이 **있는** 구현 : Data Contract Valiation 코드 + Production 코드
   ```cs
   [HttpPost]
   public IActionResult Register([FromBody] RegisterRequest request)
   {
       //
-      // Valiation 코드
+      // Data Contract Valiation 코드
       //
       if (request == null)
           return BadRequest("Request cannot be null");
@@ -74,9 +84,9 @@
       return Ok(response);
   }
   ```
-- Validation이 **없는** vs. **있는** 구현 
-  1. Validation 코드가 Production 코드 보다 많다.
-  2. Validation 실패는 첫 실패 또는 전체 실패 정보를 전달할 수 있어야 한다(현재 Validation 코드는 첫 실패 정보만 제공한다).
+- Data Contract Validation이 **없는** vs. **있는** 구현 
+  1. Data Contract Validation 코드가 Production 코드 보다 많다.
+  2. Validation 실패는 첫 실패 또는 전체 실패 정보를 전달할 수 있어야 한다(현재 Data Contract Validation 코드는 첫 실패 정보만 제공한다).
   3. Validation 대상은 Data Contract과 DomainModel으로 구분할 수 있어야 한다.
      - Data Contract Validation
        ```cs
