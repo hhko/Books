@@ -40,21 +40,27 @@ namespace Api
             //     .NotEmpty()
             //     .Length(0, 150);
 
-            // // Case 1. Inline 버그 有 : Address가 NULL일 때
+            //
+            // Case 1. Inline nested rules, 버그 有 : Address가 NULL일 때
+            //
             // RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100);
             // RuleFor(x => x.Address.City).NotEmpty().Length(0, 40);
             // RuleFor(x => x.Address.State).NotEmpty().Length(0, 2);
             // RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5);
 
-            // // Case 2. Inline 버그 無 : Address가 NULL일 때
+            //
+            // Case 2. Inline nested rules, 버그 無 : Address가 NULL일 때
+            //
             // RuleFor(x => x.Address).NotNull();
             // RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100).When(x => x.Address != null);
             // RuleFor(x => x.Address.City).NotEmpty().Length(0, 40).When(x => x.Address != null);
             // RuleFor(x => x.Address.State).NotEmpty().Length(0, 2).When(x => x.Address != null);
             // RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5).When(x => x.Address != null);
 
-            // Case 3. Sub-Validator : SetValidator
-            RuleFor(x => x.Address).NotNull().SetValidator(new AddressVilidator());
+            // Case 3. Separate Validator(SetValidator)
+            RuleFor(x => x.Address)
+                .NotNull()
+                .SetValidator(new AddressVilidator());
             
 
             //
@@ -75,6 +81,20 @@ namespace Api
             RuleFor(x => x.City).NotEmpty().Length(0, 40);
             RuleFor(x => x.State).NotEmpty().Length(0, 2);
             RuleFor(x => x.ZipCode).NotEmpty().Length(0, 5);
+        }
+    }
+
+    public class EditPersonalInfoRequestValidator : AbstractValidator<EditPersonalInfoRequest>
+    {
+        public EditPersonalInfoRequestValidator()
+        {
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .Length(0, 200);
+
+            RuleFor(x => x.Address)
+                .NotNull()
+                .SetValidator(new AddressVilidator());
         }
     }
 }

@@ -34,6 +34,10 @@ namespace Api
             }
 
 			/*
+            // 
+            // 아직 구현하지 않은 Validation
+            //
+            
             if (request == null)
                 return BadRequest("Request cannot be null");
 
@@ -64,11 +68,38 @@ namespace Api
         [HttpPut("{id}")]
         public IActionResult EditPersonalInfo(long id, [FromBody] EditPersonalInfoRequest request)
         {
+            //
+            // Data Contract Valiation 코드
+            //
+            var validator = new EditPersonalInfoRequestValidator();
+            ValidationResult result = validator.Validate(request);
+
+            if (result.IsValid == false)
+            {
+                return BadRequest(result.Errors[0].ErrorMessage);
+            }
+
+            /*
+            // 
+            // 아직 구현하지 않은 Validation
+            //
+
+            // Check that the student exist
+            */
+
+            //
+            // Production 코드
+            //
             Student student = _studentRepository.GetById(id);
 
-            // 임시 주석 처리
-            // student.EditPersonalInfo(request.Name, request.Address);
-            // _studentRepository.Save(student);
+            var address = new Address(
+                request.Address.Street,
+                request.Address.City,
+                request.Address.State,
+                request.Address.ZipCode
+            );
+            student.EditPersonalInfo(request.Name, address);
+            _studentRepository.Save(student);
 
             return Ok();
         }

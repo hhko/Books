@@ -39,7 +39,7 @@
     ``` 
 
 ## Complex Properties Validation
-- ~~Case 1. Inline 버그 有 : Address가 NULL일 때~~
+- ~~Case 1. Inline nested rules, 버그 有 : Address가 NULL일 때~~
   ```cs
   RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100);
   RuleFor(x => x.Address.City).NotEmpty().Length(0, 40);
@@ -47,7 +47,7 @@
   RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5);
   ```
   - FluentValidation은 `x.Address`가 `NULL`일 경우를 판단하지 않는다(NullException 예외 발생).
-- ~~Case 2. Inline 버그 無 : Address가 NULL일 때~~
+- ~~Case 2. Inline nested rules, 버그 無 : Address가 NULL일 때~~
   ```cs
   RuleFor(x => x.Address).NotNull();    // NULL 유효성 검사
   RuleFor(x => x.Address.Street).NotEmpty().Length(0, 100).When(x => x.Address != null);
@@ -55,8 +55,13 @@
   RuleFor(x => x.Address.State).NotEmpty().Length(0, 2).When(x => x.Address != null);
   RuleFor(x => x.Address.ZipCode).NotEmpty().Length(0, 5).When(x => x.Address != null);
   ```
-  - `.When(x => x.Address != null);` 조건이 true일 때만 Validation을 수행하도록 변경한다.
-- Case 3. Sub-Validator(SetValidator)
+  - Inline nested rules 단점
+    - Verboseness
+      - `NotNull()`과 `NotEmpty()`은 독립적으로 수행된다(`NotNull()`이 실패되어도 `NotEmpty()`가 실행된다). 
+      - `.When(x => x.Address != null);` 조건이 true일 때만 `NotEmpty()`가 수행하도록 변경해야 한다.
+    - Code duplication
+      - x.Address의 유효검 검사 재사용을 하기 위해서는 코드 중복이 발생한다.
+- Case 3. Separate Validator(SetValidator)
   ```cs
   RuleFor(x => x.Address).NotNull().SetValidator(new AddressVilidator());
 
@@ -65,3 +70,5 @@
     // ...
   }
   ```
+  - `Inline nested rules` 보다 더 Clean한 코드이다.
+<img src="./Doc/SeparateValidator.png"/>

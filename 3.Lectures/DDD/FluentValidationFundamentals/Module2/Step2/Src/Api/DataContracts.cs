@@ -27,7 +27,9 @@ namespace Api
     public class EditPersonalInfoRequest
     {
         public string Name { get; set; }
-        public string Address { get; set; }
+
+        // Data Contract
+        public AddressDto Address { get; set; }
     }
 
     public class EnrollRequest
