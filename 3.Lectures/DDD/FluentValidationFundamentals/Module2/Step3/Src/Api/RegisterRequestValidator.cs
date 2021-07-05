@@ -33,6 +33,13 @@ namespace Api
             //if (request.Address.Length > 150)
             //    return BadRequest("Address is too long");
 
+            // 배열 객체 Validation
+            RuleFor(x => x.Addresses)
+                .NotNull()
+                .Must(x => x.Length >=1 && x.Length <= 3)
+                .WithMessage("The number of addresses must be between 1 and 3");
+
+            // 배열 개별 객체 Validation
             RuleForEach(x => x.Addresses)
                 .SetValidator(new AddressVilidator());
             
