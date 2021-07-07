@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using FluentValidation;
 
 namespace Api
@@ -6,66 +7,45 @@ namespace Api
     {
         public RegisterRequestValidator()
         {
-            //if (string.IsNullOrWhiteSpace(request.Name))
-            //    return BadRequest("Name cannot be empty");
-            //if (request.Name.Length > 200)
-            //    return BadRequest("Name is too long");
-
             RuleFor(x => x.Name)
                 //.NotNull()        // NULL
                 .NotEmpty()         // NULL and Empty
                 .Length(0, 200);
-
-            //if (string.IsNullOrWhiteSpace(request.Email))
-            //    return BadRequest("Email cannot be empty");
-            //if (request.Email.Length > 150)
-            //    return BadRequest("Email is too long");
-            //if (!Regex.IsMatch(request.Email, @"^(.+)@(.+)$"))
-            //    return BadRequest("Email is invalid");
 
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .Length(0, 150)
                 .EmailAddress();        // .NET 5.0 : "^(.+)@(.+)$"
 
-            //if (string.IsNullOrWhiteSpace(request.Address))
-            //    return BadRequest("Address cannot be empty");
-            //if (request.Address.Length > 150)
-            //    return BadRequest("Address is too long");
-
-            //
-            // Case 1. 배열 Validation 분리
-            //
-            // // 배열 객체 Validation
-            // RuleFor(x => x.Addresses)
-            //     .NotNull()                                      // 독립적 실행
-            //     //.Must(x => x.Length >=1 && x.Length <= 3)     // 독립적 실행 : NotNull이 실패일 때도 실행한다
-            //     .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
-            //     .WithMessage("The number of addresses must be between 1 and 3");
-            //
-            // // 배열 개별 객체 Validation
-            // RuleForEach(x => x.Addresses)
-            //     .SetValidator(new AddressVilidator());
-            
-            //
-            // Case 2. 배열 Validation 통합
-            //
-            // RuleFor(x => x.Addresses)
-            //     .NotNull()                                      // 독립적 실행
-            //     .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
-            //     .WithMessage("The number of addresses must be between 1 and 3")
-            //     .ForEach(x => 
-            //     {
-            //         x.NotNull();
-            //         x.SetValidator(new AddressVilidator());
-            //     });
-
-            //
-            // Case 3. 배열 Validation 통합
-            //
             RuleFor(x => x.Addresses)
                 .NotNull()     
                 .SetValidator(new AddressesVilidator());
+
+            // 
+            // Case 1. 전체 규칙 실행 판단(When)
+            //
+            // RuleFor(x => x.Phone)
+            //     .NotEmpty()
+            //     .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
+            //     .When(x => x.Phone != null)                                     // 전체 규칙(NotEmpty, Must) 실행 조건이다.
+            //     .WithMessage("The phone number is incorrect");
+
+            //
+            // Case 2. 현재 규칙(바로 앞에 정의된 규칙)만 실행 판단(When)
+            //
+            RuleFor(x => x.Phone)
+                .NotEmpty()
+                .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
+                .When(x => x.Phone != null, ApplyConditionTo.CurrentValidator)  // Must 규칙만 실행 조건이다.
+                .WithMessage("The phone number is incorrect");
+
+            //
+            // Case 3. 정규식 내장 함수(Matches)
+            //
+            RuleFor(x => x.Phone)
+                .NotEmpty()
+                .Matches("^[2-9][0-9]{9}")
+                .WithMessage("The phone number is incorrect");
 
             //
             // 아직 구현 안된 Data Contract Valiation

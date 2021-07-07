@@ -9,6 +9,8 @@ namespace Api
 
         // Data Contract
         public AddressDto[] Addresses { get; set; }
+
+        public string Phone { get; set; }
     }
 
     public class AddressDto

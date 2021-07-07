@@ -14,7 +14,7 @@
     - `Data Contract vs. Domain Model`
   - [Step 3 : Collection Properties Validation](./Module2/Step3)
 - Module 3
-  - [Step 1 : ...](/.Module3/Step1)
+  - [Step 1 : Rule 실행 조건(When)](/.Module3/Step1)
   
 ## Fluent Validation
 - Simple properties : Inline validation rules
