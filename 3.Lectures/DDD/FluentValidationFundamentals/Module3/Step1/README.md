@@ -6,9 +6,9 @@
 - 내장 함수
 
 ## 목표
-- 전체 규칙 vs. 일부 규칙 실행 조건 이해
-  - 전체 규칙 : `.When(x => ..., ApplyConditionTo.AllValidators)`
-  - 일부 규칙 : `.When(x => ..., ApplyConditionTo.CurrentValidator)`
+- 전체 Rule vs. 일부 Rule 실행 조건 이해
+  - 전체 Rule : `.When(x => ..., ApplyConditionTo.AllValidators)`
+  - 일부 Rule : `.When(x => ..., ApplyConditionTo.CurrentValidator)`
 - 정규식 내장 함수 : `.Matches`
 
 ## Rule 실행 조건(When)
@@ -17,7 +17,7 @@
   RuleFor(x => x.Phone)
     .NotEmpty()
     .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
-    .When(x => x.Phone != null)                                     // 전체 규칙(NotEmpty, Must) 실행 조건이다.
+    .When(x => x.Phone != null)                                     // 전체 Rule(NotEmpty, Must) 실행 조건이다.
     .WithMessage("The phone number is incorrect");
   ```
 
@@ -26,7 +26,7 @@
   RuleFor(x => x.Phone)
     .NotEmpty()
     .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
-    .When(x => x.Phone != null, ApplyConditionTo.CurrentValidator)  // Must 규칙만 실행 조건이다.
+    .When(x => x.Phone != null, ApplyConditionTo.CurrentValidator)  // Must Rule만 실행 조건이다.
     .WithMessage("The phone number is incorrect");
   ```
   - 예제
@@ -38,8 +38,8 @@
         .Empty()
         .When(customer => !customer.IsPreferredCustomer, ApplyConditionTo.CurrentValidator);
     ```
-    - 첫번째 `.When` : `.Matches` 실행 조건
-    - 두번째 `.When` : `.Empty` 실행 조건
+    - 첫번째 `.When` : `.Matches` Rule 실행 조건
+    - 두번째 `.When` : `.Empty` Rule 실행 조건
 
 ## 내장 함수
 - 정규식 내장 함수(Matches)

@@ -7,44 +7,32 @@ namespace Api
     {
         public RegisterRequestValidator()
         {
+            //
+            // Case 2. Validation 실패 정보 1개(첫 실패)
+            //
+            //CascadeMode = CascadeMode.Stop;       // Class 설정
+
             RuleFor(x => x.Name)
-                //.NotNull()        // NULL
-                .NotEmpty()         // NULL and Empty
+                //.NotNull()                        // NULL
+                .NotEmpty()                         // NULL and Empty
                 .Length(0, 200);
 
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .Length(0, 150)
-                .EmailAddress();        // .NET 5.0 : "^(.+)@(.+)$"
+                .EmailAddress();                    // .NET 5.0 : "^(.+)@(.+)$"
 
             RuleFor(x => x.Addresses)
                 .NotNull()     
                 .SetValidator(new AddressesVilidator());
 
-            // 
-            // Case 1. 전체 규칙 실행 판단(When)
             //
-            // RuleFor(x => x.Phone)
-            //     .NotEmpty()
-            //     .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
-            //     .When(x => x.Phone != null)                                      // 전체 Rule(NotEmpty, Must) 실행 조건이다.
-            //     .WithMessage("The phone number is incorrect");
-
-            //
-            // Case 2. 현재 규칙(바로 앞에 정의된 규칙)만 실행 판단(When)
-            //
-            // RuleFor(x => x.Phone)
-            //     .NotEmpty()
-            //     .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))
-            //     .When(x => x.Phone != null, ApplyConditionTo.CurrentValidator)  // Must Rule만 실행 조건이다.
-            //     .WithMessage("The phone number is incorrect");
-
-            //
-            // Case 3. 정규식 내장 함수(Matches)
+            // Case 1. Validation 실패 정보 N개(모든 실패)
             //
             RuleFor(x => x.Phone)
+                //.Cascade(CascadeMode.Stop)        // Rule Chine 설정
                 .NotEmpty()
-                .Matches("^[2-9][0-9]{9}")          // 정규식
+                .Must(x => Regex.IsMatch(x, "^[2-9][0-9]{9}"))      // NotEmpty가 실패하면 Must는 실행하지 않는다.
                 .WithMessage("The phone number is incorrect");
 
             //

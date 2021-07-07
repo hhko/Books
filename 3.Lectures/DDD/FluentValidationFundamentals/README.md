@@ -15,6 +15,7 @@
   - [Step 3 : Collection Properties Validation](./Module2/Step3)
 - Module 3
   - [Step 1 : Rule 실행 조건(When)](/.Module3/Step1)
+  - [Step 2 : 실패 처리(CascadeMode) 이해](/.Module3/Step2)
   
 ## Fluent Validation
 - Simple properties : Inline validation rules
