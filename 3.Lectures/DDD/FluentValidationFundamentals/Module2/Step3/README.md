@@ -1,7 +1,12 @@
 # Module 2. |> Step 3. Collection Properties Validation 이해하기
 
 ## 목차
-- ...
+- 목표
+- 배열 Validation
+- 배열 값 Validation
+- 배열과 배열 값 Validation 통합
+- Validation 이해
+- Validation 중복 코드 제거
 
 ## 목표
 - 배열과 배열 값 Validation
@@ -23,7 +28,7 @@
   - Don't use exceptions for validation
   - 예외는 복구할 수 없는 하드웨어 오류와 같은 예외적인 상황에서만 사용한다.
 
-## 배열 객체 Validation
+## 배열 Validation
 ```cs
 RuleFor(x => x.Addresses)
   .NotNull()
@@ -33,7 +38,7 @@ RuleFor(x => x.Addresses)
 - 독립 실행 : `NotNull`과 `Must`은 서로의 실행 결과에 의존하지 않고 실행한다.
   <img src="./Doc/IndependenceExecution.png"/>
 
-## 배열 개별 객체 Validation
+## 배열 값 Validation
 ```cs
 RuleForEach(x => x.Addresses)
   .SetValidator(new AddressVilidator());
@@ -44,7 +49,7 @@ public class AddressVilidator : AbstractValidator<AddressDto>
 }
 ```
 
-## 배열 Validation 통합
+## 배열과 배열 값 Validation 통합
 ```cs
 RuleFor(x => x.Addresses)
   .NotNull()                                      // 독립적 실행
@@ -53,7 +58,7 @@ RuleFor(x => x.Addresses)
   .ForEach(x => x.SetValidator(new AddressVilidator()));
 ```
 
-## Validation 
+## Validation 이해
 - Validation 코드
   ```cs
   RuleFor(x => x.Addresses)
@@ -112,7 +117,7 @@ RuleFor(x => x.Addresses)
   }
   ```
 
-## 중복 코드 제거
+## Validation 중복 코드 제거
 - `RegisterRequestValidator`과 `EditPersonalInfoRequestValidator`에서 `Addresses` Validation 코드 중복이 발생하고 있다.
   ```cs
   public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
