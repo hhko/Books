@@ -1,4 +1,4 @@
-# Module 2. |> Step 3. Collection Properties Validation 이해하기
+# Module 2. |> Step 3. Collection properties validation
 
 ## 목차
 - 목표

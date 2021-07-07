@@ -1,4 +1,4 @@
-# Module 3. |> Step 1. Rule 실행 조건(When)
+# Module 3. |> Step 1. Rule 실행 조건(When) 지정하기
 
 ## 목차
 - 목표

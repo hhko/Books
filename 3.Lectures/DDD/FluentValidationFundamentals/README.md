@@ -5,17 +5,23 @@
 - [OSS Power-Ups: FluentValidation](https://www.youtube.com/watch?v=ePrWPblO-H4)
 
 ## 목차
-- Module 1
-  - [Step 1 : 예제 프로그램 이해하기](./Module1/Step1)
-- Module 2
-  - [Step 1 : Simple Properties Validation](./Module2/Step1)
-    - `FluentValidation `
-  - [Step 2 : Complex Properties Validation](./Module2/Step2)
-    - `Data Contract vs. Domain Model`
-  - [Step 3 : Collection Properties Validation](./Module2/Step3)
-- Module 3
-  - [Step 1 : Rule 실행 조건(When)](./Module3/Step1)
-  - [Step 2 : 실패 처리(CascadeMode) 이해](./Module3/Step2)
+- **Part 1. FluentValidation**
+  - Module 1 Introduction
+    - [Step 1 : 예제 프로그램 이해하기](./Module1/Step1)
+  - Module 2 Validating Input with FluentValidation
+    - [Step 1 : Simple properties validation](./Module2/Step1)
+      - `FluentValidation `
+    - [Step 2 : Complex properties validation](./Module2/Step2)
+      - `Data Contract vs. Domain Model`
+    - [Step 3 : Collection properties validation](./Module2/Step3)
+  - Module 3 Diving Deeper into FluentValidation
+    - [Step 1 : Rule 실행 조건(When) 지정하기](./Module3/Step1)
+    - [Step 2 : 실패 처리(CascadeMode) 이해하기](./Module3/Step2)
+    ```
+    - [Step 3 : 관계 Rule 만들기](./Module3/Step3)
+    - [Step 4 : 사용자 정의 Rule 만들기](./Module3/Step4)
+    - [Step 5 : ASP.NET Core 통합](./Module3/Step5)
+    ```
   
 ## Fluent Validation
 - Simple properties : Inline validation rules
