@@ -33,16 +33,39 @@ namespace Api
             //if (request.Address.Length > 150)
             //    return BadRequest("Address is too long");
 
-            // 배열 객체 Validation
-            RuleFor(x => x.Addresses)
-                .NotNull()
-                .Must(x => x.Length >=1 && x.Length <= 3)
-                .WithMessage("The number of addresses must be between 1 and 3");
-
-            // 배열 개별 객체 Validation
-            RuleForEach(x => x.Addresses)
-                .SetValidator(new AddressVilidator());
+            //
+            // Case 1. 배열 Validation 분리
+            //
+            // // 배열 객체 Validation
+            // RuleFor(x => x.Addresses)
+            //     .NotNull()                                      // 독립적 실행
+            //     //.Must(x => x.Length >=1 && x.Length <= 3)     // 독립적 실행 : NotNull이 실패일 때도 실행한다
+            //     .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
+            //     .WithMessage("The number of addresses must be between 1 and 3");
+            //
+            // // 배열 개별 객체 Validation
+            // RuleForEach(x => x.Addresses)
+            //     .SetValidator(new AddressVilidator());
             
+            //
+            // Case 2. 배열 Validation 통합
+            //
+            // RuleFor(x => x.Addresses)
+            //     .NotNull()                                      // 독립적 실행
+            //     .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
+            //     .WithMessage("The number of addresses must be between 1 and 3")
+            //     .ForEach(x => 
+            //     {
+            //         x.NotNull();
+            //         x.SetValidator(new AddressVilidator());
+            //     });
+
+            //
+            // Case 3. 배열 Validation 통합
+            //
+            RuleFor(x => x.Addresses)
+                .NotNull()     
+                .SetValidator(new AddressesVilidator());
 
             //
             // 아직 구현 안된 Data Contract Valiation
@@ -51,6 +74,22 @@ namespace Api
             //    return BadRequest("Request cannot be null");
             // Email should be unique.
             // Return a list of errors, not just the first one
+        }
+    }
+
+    public class AddressesVilidator : AbstractValidator<AddressDto[]>
+    {
+        public AddressesVilidator()
+        {
+            RuleFor(x => x)
+                //.NotNull()                                      // 독립적 실행
+                .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
+                .WithMessage("The number of addresses must be between 1 and 3")
+                .ForEach(x => 
+                {
+                    x.NotNull();
+                    x.SetValidator(new AddressVilidator());
+                });
         }
     }
 
@@ -73,8 +112,22 @@ namespace Api
                 .NotEmpty()
                 .Length(0, 200);
 
-            RuleForEach(x => x.Addresses)
-                .SetValidator(new AddressVilidator());
+            // RuleForEach(x => x.Addresses)
+            //     .SetValidator(new AddressVilidator());
+            
+            // RuleFor(x => x.Addresses)
+            //     .NotNull()                                      // 독립적 실행
+            //     .Must(x => x?.Length >=1 && x.Length <= 3)      // 독립적 실행 : NULL 처리
+            //     .WithMessage("The number of addresses must be between 1 and 3")
+            //     .ForEach(x => 
+            //     {
+            //         x.NotNull();
+            //         x.SetValidator(new AddressVilidator());
+            //     });
+
+            RuleFor(x => x.Addresses)
+                .NotNull()      
+                .SetValidator(new AddressesVilidator());
         }
     }
 }

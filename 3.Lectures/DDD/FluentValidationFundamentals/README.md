@@ -8,11 +8,36 @@
 - Module 1
   - [Step 1 : 예제 프로그램 이해하기](./Module1/Step1)
 - Module 2
-  - [Step 1 : Simple Properties Validation 이해하기](./Module2/Step1)
-  - [Step 2 : Complex Properties Validation 이해하기](./Module2/Step2)
+  - [Step 1 : Simple Properties Validation](./Module2/Step1)
+    - `FluentValidation` 개요
+  - [Step 2 : Complex Properties Validation](./Module2/Step2)
     - `Data Contract vs. Domain Model`
-  - [Step 3 : Collection Properties Validation 이해하기](./Module2/Step3)
+  - [Step 3 : Collection Properties Validation](./Module2/Step3)
   
+## Fluent Validation
+- Simple properties : Inline validation rules
+- Complex properties : Inline validation rules vs. Separate validator
+  - Inline validation rules : 비 추천(Code duplication, Verboseness)
+  - Separate validator : 추천
+- Collection
+  - Inline nested rules(ChildRules) : 비 추천
+  - Separate Validator(SetValidator)
+    - 배열 : `public class AddressesVilidator : AbstractValidator<AddressDto[]>`
+    - 배열 값 : `public class AddressVilidator : AbstractValidator<AddressDto>`
+- ~~Inheritance(SetInheritanceValidator : Data Contract에서 존재 불가능한 개념)~~ → Only DomainModel에서 사용 
+  - Data Contract에서는 상속 개념이 존재하지 않는다.
+  - 상속 개념의 Validation은 DomainModel에서만 존재할 수 있다.
+    - Setting up rules polymorphically
+    - Only applicable to domain classes
+- ~~Rule seet(RuleSet : CRUD-based)~~ → Task-based
+  - validator와 Data Contract 재사용은 CRUD-based이다. Task-based 방향으로 설계해야 한다.
+    - Reusing validators : Validation 재사용 비 추천
+    - Don't reuese data contracts : Data Contract은 재사용 하지 않는다.
+- ~~Throw exception~~
+  - Validations ≠ Exceptional situation
+  - Don't use exceptions for validation
+  - 예외는 복구할 수 없는 하드웨어 오류와 같은 예외적인 상황에서만 사용한다.
+
 ```
 ## 주요 학습
 ## Data Contract vs. Domain Model
@@ -25,21 +50,6 @@
 - Register **Request** Validator vs. Register Validator
   - Register **Request** Validator : Registration input data
   - Register Validator : Registration functionality, Unit tests
-
-## Fluent Validation
-- Simple properties
-- Comple properties 
-  - Inline validation rules : x(Code duplication, Verboseness)
-  - Separate validator :  
-- Collection
-- ~~Inheritance~~ -> DomainModel
-  - Setting up rules polymorphically : o
-  - Only applicable to domain class : x
-- ~~Rule seet(CRUD-based)~~ -> Task-based
-  - Reusing validators : o
-  - Don't reuese data contracts : x
-- Throw exception
-  - Validations ≠ Exceptional situation
 ```
 
 ## VS Code 명령어
