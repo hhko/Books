@@ -15,7 +15,7 @@
 - `Stop` : When a rule fails, validation is immediately halted.
 
 ## CascadeMode 적용 수준 이해
-- `Rule Chain` 영역 : 특정 Rule Chine에만 적용한다.
+- `Rule Chain` 영역 : 특정 Rule Chain에만 적용한다.
   ```cs
   RuleFor(x => x.Phone)
     .Cascade(CascadeMode.Stop)                // Rule Chain수준
@@ -28,7 +28,7 @@
     ValidationResult result = validator.Validate(request);
     // result.Errors N개(모든 실패)
     ``` 
-- `Class` 영역 : 특정 클래스에 정의된 모든 Rule Chine에 적용한다.
+- `Class` 영역 : 특정 클래스에 정의된 모든 Rule Chain에 적용한다.
   ```cs
   public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
   {
@@ -43,7 +43,7 @@
     ValidationResult result = validator.Validate(request);
     // result.Errors 1개(첫 실패)
     ``` 
-- `Global` 영역 : 모든 Rule Chine에 적용한다.
+- `Global` 영역 : 모든 Rule Chain에 적용한다.
   ```cs
   public void ConfigureServices(IServiceCollection services)
   {
