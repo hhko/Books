@@ -9,7 +9,7 @@
   - [Step 1 : 예제 프로그램 이해하기](./Module1/Step1)
 - Module 2
   - [Step 1 : Simple Properties Validation](./Module2/Step1)
-    - `FluentValidation` 개요
+    - `FluentValidation `
   - [Step 2 : Complex Properties Validation](./Module2/Step2)
     - `Data Contract vs. Domain Model`
   - [Step 3 : Collection Properties Validation](./Module2/Step3)
