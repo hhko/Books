@@ -1,7 +1,7 @@
 # Elastic Beat 개발 환경 만들기 by Docker
 
 ## [Dockerfile](./Dockerfile)
-- 라이선스 이슈로 7.10 버전으로 개발한다.
+- 라이선스 이슈로 7.10 버전 이하로 개발한다.
   - [Elastic 라이선스를 변경해야 했던 이유](https://www.elastic.co/kr/blog/why-license-change-AWS) 
   - [Elasticsearch를 둘러싼 AWS와 Elastic의 대립](https://blog.opsnow.com/35)
 ```dockerfile
@@ -79,7 +79,7 @@ RUN go get github.com/godror/godror
 
 
 #
-# 단계 6. beats 7.10 브랜치 소스 받기(name과 email은 변경한다)
+# 단계 6. beats 7.14 브랜치 소스 받기(name과 email은 변경한다)
 #
 RUN git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.14 \
 	&& git config --global user.name "mirero" \
@@ -96,16 +96,16 @@ RUN rm -rf ~/.cache/pip
 ## 컨테이너 사용법 
 
 - 단계 1. 컨테이너 이미지 만들기
-  - `docker image build -t beats/dev:7.10 .`
+  - `docker image build -t beats/dev:7.14 .`
 
 + 단계 2. 컨테이너 이미지 내보내기(image -> .tar 파일)
-  - `docker image save -o beats_dev_7.10.tar beats/dev:7.10`
+  - `docker image save -o beats_dev_7.14.tar beats/dev:7.14`
 
 - 단계 3. 컨테이너 이미지 가져요기(image <- .tar 파일)
-  - `docker iamge load -i beats_dev_7.10.tar`
+  - `docker iamge load -i beats_dev_7.14.tar`
 
 + 단계 4. 컨테이너 실행 및 접속하기
-  - 컨테이너 실행 : `docker container run -itd --name beats beats/dev:7.10`
+  - 컨테이너 실행 : `docker container run -itd --name beats beats/dev:7.14`
     - `-itd` : 백그라운드로 실행하면서 대화형 쉘을 제공한다(실행 후에 shell 접속을 허용하기 위해서는 it 옵션이 필요한다).
       - `-i` : --interactive, Keep STDIN open even if not attached
       - `-t` : --tty, Allocate a pseudo-TTY
