@@ -7,9 +7,10 @@
 ```dockerfile
 #
 # 단계 1. libbeat 이미지 만들기
-#  - 사이트 : https://github.com/elastic/beats/blob/7.10/libbeat/Dockerfile
+#  - 사이트 : https://github.com/elastic/beats/blob/7.10/libbeat/Dockerfile : golang:1.14.12
+#  - 사이트 : https://github.com/elastic/beats/blob/7.14/libbeat/Dockerfile : golang:1.16.6
 #
-FROM golang:1.14.12
+FROM golang:1.16.6
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -44,11 +45,14 @@ RUN apt-get -y update \
 	
 #
 # 단계 3. Go 빌드 패키지 mage 설치
+#  - go get -u -d github.com/magefile/mage 가끔 실패한다.
 #	
-RUN go get -u -d github.com/magefile/mage \
-	&& cd $GOPATH/src/github.com/magefile/mage \
-	&& go run bootstrap.go 
-
+# RUN go get -u -d github.com/magefile/mage \
+#	&& cd $GOPATH/src/github.com/magefile/mage \
+#	&& go run bootstrap.go 
+RUN git clone https://github.com/magefile/mage \
+	&& cd mage \
+	&& go run bootstrap.go
 	
 #
 # 단계 4. oracle driver 설치(oracle 모니터링 개발을 위해서 설치한다)
@@ -77,7 +81,7 @@ RUN go get github.com/godror/godror
 #
 # 단계 6. beats 7.10 브랜치 소스 받기(name과 email은 변경한다)
 #
-RUN git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.10 \
+RUN git clone https://github.com/elastic/beats.git $GOPATH/src/github.com/elastic/beats --branch 7.14 \
 	&& git config --global user.name "mirero" \
 	&& git config --global user.email "support@mirero.co.kr" 
 	
