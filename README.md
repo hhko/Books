@@ -36,7 +36,7 @@
      - **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel)**
      - **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
      - [Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)
-	 - Functional Programming
+   - Functional Programming
      - [Defensive Programming](./3.Lectures/FP/DefensiveProgramming)
      - [Writing Purely Functional Code In C#](./3.Lectures/FP/WritingPurelyFunctionalCodeInCSharp)
 1. Blogs
