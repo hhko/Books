@@ -33,7 +33,7 @@
      - [Practical Microservices with Dapr and .NET](./2.Books/Microservice/DaprDotNet)
 1. Lectures
    - Domain-Driven Design
-     - **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel)**
+     - **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel/README.md)**
      - **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
      - [Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)
    - Functional Programming
