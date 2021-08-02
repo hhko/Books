@@ -31,22 +31,24 @@
 - 버그 줄이고(↓), 도메인 표현은 높인다(↑).
 
 ## Value Object 정의
-<img src="./ValueObject.png" width="80%"/>
+<img src="./ValueObject.png" width="60%"/>
 
 ## Value Object 기대 효과
-<img src="./ValueObject_Effects1.png" width="80%"/>  
-<img src="./ValueObject_Effects2.png" width="80%"/>  
-<img src="./ValueObject_Effects3.png" width="80%"/>  
-- Raise the level of abstraction in code
+<img src="./ValueObject_Effects1.png" width="60%"/>  
+<img src="./ValueObject_Effects2.png" width="60%"/>  
+<img src="./ValueObject_Effects3.png" width="60%"/>  
+
+- **Raise the level of abstraction in code**
   - string -> CustomerName, Email
   - decimal -> Dollars
   - DateTime? -> ExpirationDate
-- Make domain concepts explicit
+- **Make domain concepts explicit**
   - null -> Infinite
-- Gather related domain knowledge into a single place
+- **Gather related domain knowledge into a single place**
   - Validation 규칙
   - if ... -> IsExpired
-- Fully utilize programming language's type system
+- **Fully utilize programming language's type system**
+  - customer.Name = email; // 컴파일 에러
 
 ## Value Object 구현
 - ValueObject<T>
