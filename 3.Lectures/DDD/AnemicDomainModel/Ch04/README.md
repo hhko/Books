@@ -71,3 +71,5 @@
   - +, - 추가 연산 제공
 - DateTime? -> ExpirationDate
   - Infinite : `null` 제거
+  <img src="./ExpirationDateValueObject.png" width="80%"/>
+  
