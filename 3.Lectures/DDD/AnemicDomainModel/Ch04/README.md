@@ -31,12 +31,12 @@
 - 버그 줄이고(↓), 도메인 표현은 높인다(↑).
 
 ## Value Object 정의
-![](./ValueObject.png)
+<img src="./ValueObject.png" width="80%"/>
 
 ## Value Object 기대 효과
-![](./ValueObject_Effects1.png)
-![](./ValueObject_Effects2.png)
-![](./ValueObject_Effects3.png)
+<img src="./ValueObject_Effects1.png" width="80%"/>  
+<img src="./ValueObject_Effects2.png" width="80%"/>  
+<img src="./ValueObject_Effects3.png" width="80%"/>  
 - Raise the level of abstraction in code
   - string -> CustomerName, Email
   - decimal -> Dollars
@@ -59,7 +59,7 @@
 - explicit operator -> 정적 Factory Method(Of)  
   <img src="./OperatorToFactoryMethod.png" width="80%"/>
 - ORM mapping  
-  <img src="./EntitiyOrmMapping.png" width="80%"/>
+  <img src="./OrmMapping.png" width="80%"/>
 
 ## Value Object 적용
 - string -> CustomerName
