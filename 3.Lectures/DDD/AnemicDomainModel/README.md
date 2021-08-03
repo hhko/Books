@@ -2,14 +2,21 @@
 
 ## 목차
 1. [Introduction](./Ch01/README.md)
-   - Encapsulation 목표
-   - Mutable Anemic Domain Model vs. Immutable Anemic Domain Model 차이점
+   - Encapsulation 정의
+   - Encapsulation 구현 방법
+   - (Mutable) Anemic Domain Model vs. Immutable Anemic Domain Model 차이점
 1. [Introducing an Anemic Domain Model](./Ch02/README.md)
    - 예제 프로그램 Domain Model 소개
 1. [Decoupling the Domain Model from Data Contracts](./Ch03/README.md)
-   - Data Contracts 필요성
+   - Data Contracts 정의
+   - Data Contracts 필요성(기대 효과)
    - Data Contracts 구현 방법(DTO : Data Transfer Objects)
 1. [Using Value Objects as Domain Model Building Blocks](./Ch04/README.md)
+   - Value Object 정의
+   - Value Object 필요성(기대 효과)
+   - Value Object 구현 방법
+1. [Pushing Logic Down from Services to Domain Classes](./Ch05/README.md)
+   - TODO.
 
 ## 참고 사이트
 - [ ] [AnemicDomainModel Github](https://github.com/vkhorikov/AnemicDomainModel)
