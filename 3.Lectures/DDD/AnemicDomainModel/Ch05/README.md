@@ -5,6 +5,7 @@
   
 ## 생성자 리팩토링
 <img src="./Refactoring_Constructor.png" width="60%"/>
+
 - 목표 : 데이터 ..   
 - 구현 방법
   - 필수 데이터 : 생성자 매개변수
@@ -12,6 +13,7 @@
   
 ## 컬랙션 리팩토링
 <img src="./Refactoring_IReadOnlyList.png" width="60%"/>
+
 - 목표 : 
 - 구현 방법  
   - 불변 컬랙션 : IReadOnlyList(vs. IEnumerable)
@@ -20,12 +22,14 @@
 
 ## 로직 리팩토링
 <img src="./Refactoring_Logic.png" width="60%"/>  
+
 - 목표 : 
 - 구현 방법
   - 메서드 통합 : 매개변수 추가
   - 불변 필드 : get
 
-## Id 리팩토링
+## ID 리팩토링
 <img src="./Refactoring_Id.png" width="60%"/>  
+
 - 목표 : 
 - 구현 방법
