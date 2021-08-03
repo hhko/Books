@@ -1,4 +1,4 @@
-# 4장 Using Value Objects as Domain Model Building Blocks
+# 4장. Using Value Objects as Domain Model Building Blocks
 
 ## Encapsulation
 - Encapsulation is an act of protecting the data integrity.

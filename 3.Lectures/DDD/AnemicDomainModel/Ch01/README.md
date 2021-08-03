@@ -1,4 +1,4 @@
-# 1장 Introduction
+# 1장. Introduction
 
 ## Anemic Domain Model
 ### (Mutable) Anemic Domain Model
@@ -25,6 +25,6 @@
 	데이터 무결성이 보장된다면 캡슐화가 필요없다(Functional Programming).
 - 구현 방법 : 클래스의 클라이언트가 내부 데이터를 유효하지 않거나 일관성이 없는 상태로 설정하지 못하도록 방지하여 수행됩니다.
   - Information hding : ?데이터 변경을 위한 노출을 최소화한다.
-  - Bundling data and operations together : ?
+  - Bundling data and operations together : 더 적은 수의 개념으로 처리한다.
 - Encapsulation 없을 때 문제점
   - it is hard to maintain code correctness(정확성).
