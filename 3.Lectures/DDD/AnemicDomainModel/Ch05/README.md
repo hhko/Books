@@ -9,7 +9,7 @@
   - ↓ : 잠재적인 실수를 줄인다.
   
 ## 생성자 리팩토링
-<img src="./Refactoring_Constructor.png" width="60%"/>
+<img src="./Refactoring_Constructor.png" width="100%"/>
 
 - 목표 : 데이터 ..   
 - 구현 방법
@@ -17,7 +17,7 @@
   - 기본 값 : 생성자 멤버 젼수 초기화
   
 ## 컬랙션 리팩토링
-<img src="./Refactoring_IReadOnlyList.png" width="60%"/>
+<img src="./Refactoring_IReadOnlyList.png" width="100%"/>
 
 - 목표 : 
 - 구현 방법  
@@ -26,7 +26,7 @@
   - 가변 행위 : 명시적 메서드 정의
 
 ## 로직 리팩토링
-<img src="./Refactoring_Logic.png" width="60%"/>  
+<img src="./Refactoring_Logic.png" width="100%"/>  
 
 - 목표 : 
 - 구현 방법
@@ -34,6 +34,6 @@
   - 불변 필드 : get
 
 ## 데이터 불일치 노출 리팩토링
-<img src="./Refactoring_Inconsistency.png" width="60%"/>  
+<img src="./Refactoring_Inconsistency.png" width="100%"/>  
 - 목표 : 
 - 구현 방법
