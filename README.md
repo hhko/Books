@@ -26,30 +26,30 @@
      - Polly
 1. Books
    - Domain-Driven Design
-     - [도메인 주도 설계 철저 입문](./2.Books/DDD/DDDGuide) 
+     - [ ] [도메인 주도 설계 철저 입문](./2.Books/DDD/DDDGuide) 
    - Functional Programming
-     - [Functional Programming in C#](./2.Books/FP/FPinCSharp)
+     - [ ] [Functional Programming in C#](./2.Books/FP/FPinCSharp)
    - Microservice
-     - [Practical Microservices with Dapr and .NET](./2.Books/Microservice/DaprDotNet)
+     - [ ] [Practical Microservices with Dapr and .NET](./2.Books/Microservice/DaprDotNet)
 1. Lectures
    - Domain-Driven Design
-     - **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel/README.md)**
-     - **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
-     - [Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)
+     - [x] **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel/README.md)**
+     - [ ] **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
+     - [ ] [Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)
    - Functional Programming
-     - [Defensive Programming](./3.Lectures/FP/DefensiveProgramming)
-     - [Writing Purely Functional Code In C#](./3.Lectures/FP/WritingPurelyFunctionalCodeInCSharp)
+     - [ ] [Defensive Programming](./3.Lectures/FP/DefensiveProgramming)
+     - [ ] [Writing Purely Functional Code In C#](./3.Lectures/FP/WritingPurelyFunctionalCodeInCSharp)
 1. Blogs
    - Domain-Driven Design
-     - [Designing with Types](./4.Blogs/DDD/DesigningWithTypes_2)
+     - [ ] [Designing with Types](./4.Blogs/DDD/DesigningWithTypes_2)
    - Object-Oriented Design
-     - [.NET Core Console App with Dependency Injection, Logging, and Settings](./4.Blogs/OOD/BetterConsoleApp/ConsoleUI)
+     - [ ] [.NET Core Console App with Dependency Injection, Logging, and Settings](./4.Blogs/OOD/BetterConsoleApp/ConsoleUI)
    - Functional Programming
-     - [How To Debug LINQ Queries in C#](./4.Blogs/FP/HowToDebugLINQQueriesInCSharp)
+     - [ ] [How To Debug LINQ Queries in C#](./4.Blogs/FP/HowToDebugLINQQueriesInCSharp)
    - Refactoring
-     - [Refactoring to Aggregate Services](./4.Blogs/Refactoring/RefactoringToAggregateServices)
+     - [ ] [Refactoring to Aggregate Services](./4.Blogs/Refactoring/RefactoringToAggregateServices)
    - Unit Test
-     - [How to Use and Unit Test ILogger](./4.Blogs/UnitTest/HowToUseAndUnitTestILogger)
+     - [ ] [How to Use and Unit Test ILogger](./4.Blogs/UnitTest/HowToUseAndUnitTestILogger)
    - Awesome
      - [Domain-Driven Design](./4.Blogs/Awesome/DDD)
      - [Functional Programming](./4.Blogs/Awesome/FP)
