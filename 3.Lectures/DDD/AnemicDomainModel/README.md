@@ -30,6 +30,8 @@
    - Domain Model Isolation vs. Domain Model Encapsulation 
 
 ## 참고 사이트
+- [ ] [How to know if your Domain model is properly isolated?](https://enterprisecraftsmanship.com/posts/how-to-know-if-your-domain-model-is-properly-isolated/)
+- [ ] [Domain model isolation](https://enterprisecraftsmanship.com/posts/domain-model-isolation/)
 - [ ] [AnemicDomainModel Github](https://github.com/vkhorikov/AnemicDomainModel)
 - [ ] [C# code contracts vs input validation](https://enterprisecraftsmanship.com/posts/code-contracts-vs-input-validation/)
 - [ ] [Validation and DDD](https://enterprisecraftsmanship.com/posts/validation-and-ddd/)
