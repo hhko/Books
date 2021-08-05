@@ -1,7 +1,8 @@
 # 5장. Pushing Logic Down from Services to Domain Classes
 
 ## Domain Model(Value Object & Entity) 리팩토링 목표
-<img src="./Refactoring_Goal.png" width="60%"/>
+<img src="./Refactoring_Goal_DomainModel1.png" width="60%"/>  
+<img src="./Refactoring_Goal_DomainModel2.png" width="60%"/>
 
 - 리팩토링 목표
   - `Mutable` Anemic Domain Model을 `Immutable` Domain Model 지향으로 개선한다.
@@ -90,8 +91,10 @@
 - 구현 방법
   - IsZero
 
+<br/>
+
 ## Service 리팩토링 목표
-<img src="./Service_Goal.png" width="60%"/>
+<img src="./Refactoring_Goal_Service.png" width="60%"/>
 
 ## CustomerSerivce 리팩토링
 ### 로직 이동 
