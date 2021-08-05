@@ -23,6 +23,11 @@
    - Repositories와 Unit of Work 책임 정의
    - 예외 처리
    - 도메인 중심 솔루션 탐색기 구조화
+1. [Domain Modeling Best Practices](./Ch07/README.md)
+   - YAGNI
+   - Coupling vs Code Duplication
+   - Domain Model Encapsulation 
+   - Domain Model Isolation vs. Domain Model Encapsulation 
 
 ## 참고 사이트
 - [ ] [AnemicDomainModel Github](https://github.com/vkhorikov/AnemicDomainModel)
