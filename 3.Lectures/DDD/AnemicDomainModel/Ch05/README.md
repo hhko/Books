@@ -1,7 +1,7 @@
 # 5장. Pushing Logic Down from Services to Domain Classes
 
-## 리팩토링 목표
-<img src="./Refactoring_Goal.png" width="80%"/>
+## Value Object & Entity 리팩토링 목표
+<img src="./Refactoring_Goal.png" width="60%"/>
 
 - 리팩토링 목표
   - `Mutable` Anemic Domain Model을 `Immutable` Domain Model 지향으로 개선한다.
@@ -69,7 +69,7 @@
 - 리팩토링 제외 이유 : `PurchaseDate` 도메인을 표현하기 위해 `DateTime` 타입은 논리적인 버그 발생 가능성이 없다. 
 
 ### ORM Only(AggregateRoot)) 생성자 리팩토링
-<img src="./Refactoring_AggregateRootConstructor.png.png" width="100%"/>  
+<img src="./Refactoring_AggregateRootConstructor.png" width="100%"/>  
 
 - 목표 : 생성자자 호출을 제한한다.
 
@@ -90,8 +90,8 @@
 - 구현 방법
   - IsZero
 
-## Service 객체 목표
-<img src="./Service_Goal.png" width="80%"/>
+## Service 리팩토링 목표
+<img src="./Service_Goal.png" width="60%"/>
 
 ## CustomerSerivce 리팩토링
 ### 로직 이동 
