@@ -18,6 +18,11 @@
 1. [Pushing Logic Down from Services to Domain Classes](./Ch05/README.md)
    - Domain Model(Value Object & Entity) 리팩토링 목표
    - Service 리팩토링 목표
+1. [Organizing the Application Services Layer](./Ch06/README.md)
+   - Application Service 정의
+   - Repositories와 Unit of Work 책임 정의
+   - 예외 처리
+   - 도메인 중심 솔루션 탐색기 구조화
 
 ## 참고 사이트
 - [ ] [AnemicDomainModel Github](https://github.com/vkhorikov/AnemicDomainModel)
