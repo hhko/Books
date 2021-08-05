@@ -1,12 +1,12 @@
 # [Domain-Driven Design in Practice](https://app.pluralsight.com/library/courses/domain-driven-design-in-practice/table-of-contents?aid=7010a000002LUv7AAG)
 
 ## 목차
-- [1장. DDD Introduction](./Ch01)
-- [2장. Value Object vs. Entity](./Ch02)
-- [3장. UI & Persistence Layer](./Ch03)
-- [4장. Aggregate](./Ch04)
-- [5장. Repository](./Ch05)
-- [6장. Bounded Context](./Ch06)
+- [1장. DDD Introduction](./Ch01/README.md)
+- [2장. Value Object vs. Entity](./Ch02/README.md)
+- [3장. UI & Persistence Layer](./Ch03/README.md)
+- [4장. Aggregate](./Ch04/README.md)
+- [5장. Repository](./Ch05/README.md)
+- [6장. Bounded Context](./Ch06/README.md)
 
 ## 요구사항
 - SnackMachine | 스낵머신에 돈을 투입한다.
