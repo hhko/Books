@@ -16,7 +16,7 @@
    - Value Object 필요성(기대 효과)
    - Value Object 구현 방법
 1. [Pushing Logic Down from Services to Domain Classes](./Ch05/README.md)
-   - Value Object & Entity 리팩토링 목표
+   - Domain Model(Value Object & Entity) 리팩토링 목표
    - Service 리팩토링 목표
 
 ## 참고 사이트

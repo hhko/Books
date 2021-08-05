@@ -1,6 +1,6 @@
 # 5장. Pushing Logic Down from Services to Domain Classes
 
-## Value Object & Entity 리팩토링 목표
+## Domain Model(Value Object & Entity) 리팩토링 목표
 <img src="./Refactoring_Goal.png" width="60%"/>
 
 - 리팩토링 목표
