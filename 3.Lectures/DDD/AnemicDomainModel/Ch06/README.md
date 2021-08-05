@@ -1,10 +1,10 @@
 # 6장. Organizing the Application Services Layer
 
 ## Application Service 정의
-<img src="./ApplicationService.png.png" width="90%"/>
+<img src="./ApplicationService.png" width="90%"/>
 
 ## Repositories and Unit of Work
-<img src="./Repositories_and_UnitOfWork.png.png" width="90%"/>
+<img src="./Repositories_and_UnitOfWork.png" width="90%"/>
 
 - `Commit` 책임은 `Unit of Work`이다.
 
