@@ -34,14 +34,16 @@
 1. Lectures
    - Domain-Driven Design
      - [x] **[Refactoring from Anemic Domain Model Towards a Rich One](./3.Lectures/DDD/AnemicDomainModel/README.md)**
-     - [ ] **[Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice)**
-     - [ ] **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals)**
+     - [ ] **[Domain-Driven Design in Practice](./3.Lectures/DDD/DddInPractice/README.md)**
+     - [ ] **[Domain-Driven Design Fundamentals](/3.Lectures/DDD/DddFundamentals/README.md)
+     - [ ] **[FluentValidation Fundamentals](./3.Lectures/DDD/FluentValidationFundamentals/README.md)**
      - [ ] DDD and EF Core Preserving Encapsulation
      - [ ] Domain-Driven Design Fundamentals
      - [ ] Domain-Driven Design Working with Legacy Projects
      - [ ] Specification Pattern in C#
      - [ ] CQRS in Practice
      - [ ] Clean Architecture Patterns, Practices, and Principles
+     - [ ] Creating N-Tier Applications in C#, Part 1, 2
    - Functional Programming
      - [ ] [Defensive Programming](./3.Lectures/FP/DefensiveProgramming)
      - [ ] [Writing Purely Functional Code In C#](./3.Lectures/FP/WritingPurelyFunctionalCodeInCSharp)

@@ -1,4 +1,4 @@
-# [Domain-Driven Design in Practice](https://app.pluralsight.com/library/courses/domain-driven-design-in-practice/table-of-contents?aid=7010a000002LUv7AAG)
+# Domain-Driven Design in Practice
 
 ## 목차
 - [1장. DDD Introduction](./Ch01/README.md)
@@ -32,3 +32,5 @@
 - ATM | 청구된 모든 금액을 추적한다.
   - Keep track of all money charged
 
+## 참고 자료
+- [Domain-Driven Design in Practice](](https://app.pluralsight.com/library/courses/domain-driven-design-in-practice/table-of-contents?aid=7010a000002LUv7AAG))
