@@ -57,6 +57,8 @@
 1. Blogs
    - Domain-Driven Design
      - [ ] [Designing with Types](./4.Blogs/DDD/DesigningWithTypes_2)
+   - EF
+     - [ ] [EF Tools](./4.Blogs/EF/Tools/README.md)
    - Object-Oriented Design
      - [ ] [.NET Core Console App with Dependency Injection, Logging, and Settings](./4.Blogs/OOD/BetterConsoleApp/ConsoleUI)
    - Functional Programming
