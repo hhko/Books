@@ -12,6 +12,7 @@
 - **Web**
   - [Selenium](https://github.com/SeleniumHQ/selenium)
   - [bUnit](https://github.com/bUnit-dev/bUnit)
+  - [NBomber](https://github.com/PragmaticFlow/NBomber) : oad testing framework for Pull and Push scenarios
 + **Dependency injection**
   - [Moq](https://github.com/moq/moq4)
   - Microsoft.DependencyInjection
