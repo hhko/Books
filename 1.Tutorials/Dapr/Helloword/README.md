@@ -1,4 +1,4 @@
-# Dapr 설치 및 Helloworld 예제
+# Dapr Helloworld
 
 ## 목차
 - 설치
@@ -105,7 +105,7 @@
 
 <br/>
 
-## [Dapr 제거](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-uninstall/
+## [Dapr 제거](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-uninstall/)
 - 명령어 비교
   - `dapr uninstall`
   - `dapr uninstall --all` : Uninstall from self-hosted mode and remove .dapr directory, Redis, Placement and Zipkin containers
@@ -146,6 +146,10 @@
 <br/>
 
 ## [Dapr API Helloworld 예제](https://docs.dapr.io/getting-started/get-started-api/)
+- 개요
+  - Redis에 Key & Value 데이터를 추가하고 조회한다.
+    - 추가 : `http://localhost:3500/v1.0/state/statestore`, POST, JSON
+    - 조회 : `http://localhost:3500/v1.0/state/statestore/name` 또는 Redis 컨테이너 안 `keys *`, `hgetall "myapp||name"`
 - Step 1: Run the Dapr sidecar
   ```
   dapr run --app-id myapp --dapr-http-port 3500
@@ -153,6 +157,8 @@
   ℹ️  Starting Dapr with id myapp. HTTP Port: 3500. gRPC Port: 35315
   ℹ️  Checking if Dapr sidecar is listening on HTTP port 3500
   ```
+  - id : `--app-id`
+  - REST API : `--dapr-http-port`
 - Step 2: Save state
   ```json
   [
@@ -195,6 +201,12 @@
 <br/>
 
 ## [Dapr Component Hellowrod 예제](https://docs.dapr.io/getting-started/get-started-component/)
+- 개요
+  - yaml 파일에 secretstores.local.file 타입의 component(-> json)을 생성하고 조회한다.
+    - 생성 : localSecretStore.yaml, mysecrets.json
+    - 조회 : http://localhost:3500/v1.0/secrets/my-secret-store/my-secret
+      - my-secret-store : localSecretStore.yaml(metadata > name)
+      - my-secret : mysecrets.json(key)
 - Step 1: Create a JSON secret store
   ```json
   {
@@ -235,6 +247,7 @@
 
   dapr stop myapp
   ```
+  - component : `--components-path`
 
 <br/>
 
