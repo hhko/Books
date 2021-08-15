@@ -150,23 +150,39 @@
 - 개요
 - 명령
   ```
+  # dapr runtime 초기화
+  dapr init
+
+  # dapr runtime 실행
   dapr run
-  포트 확인
+  WARNING: no application command found.
+  ℹ️  Starting Dapr with id Terrierbutter-Lynx. HTTP Port: 39037. gRPC Port: 44903
+  ℹ️  Checking if Dapr sidecar is listening on HTTP port 39037
 
-  POST http://localhost:포트/v1.0/state/statestore/
-  {
-    {
-      "key": "KeyValue",
-      "value": "Value"
-    }
-  }
+  # Create : dapr 저장소 데이터 추가
+  curl -X POST -H "Content-Type: application/json" -d '[{ "key": "name", "value": "Bruce Wayne"}]' http://localhost:39037/v1.0/state/statestore
 
-  GET http://localhost:포트/v1.0/state/statestore/키값
+  # Read : dapr 저장소 데이터 조회
+  curl http://localhost:39037/v1.0/state/statestore/name
+  "Bruce Wayne"
+
+  # Read : redis 저장소 데이터 조회
+  docker container exec -it dapr_redis redis-cli
+  127.0.0.1:6379> keys *
+  127.0.0.1:6379> hgetall "myapp||name"
+
+  # Update : ...
+  
+  # Delete : dapr 저장소 데이터 삭제
+  curl -X DELETE http://localhost:39037/v1.0/state/statestore/name
+  ```
+- TODO : Powershell 명령  
+  ```
   iwr http://localhost:포트/v1.0/state/statestore/키값
   iwr http://localhost:포트/v1.0/state/statestore/키값 -Method Delete
-
-  Redis 컨테이너 값 확인 
   ```
+
+<br/>
 
 ## [Dapr API Helloworld 2. 예제](https://docs.dapr.io/getting-started/get-started-api/)
 - 개요
@@ -181,7 +197,7 @@
   ℹ️  Checking if Dapr sidecar is listening on HTTP port 3500
   ```
   - id : `--app-id`
-  - REST API : `--dapr-http-port`
+  - HTTP 포트 : `--dapr-http-port`
 - Step 2: Save state
   ```json
   [
@@ -205,7 +221,7 @@
   ```
 - Step 4: See how the state is stored in Redis
   ```
-  docker exec -it dapr_redis redis-cli
+  docker container exec -it dapr_redis redis-cli
   
   127.0.0.1:6379> keys *
   1) "myapp||name"
