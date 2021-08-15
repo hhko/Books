@@ -1,4 +1,4 @@
-# Dapr Helloworld
+# Install Dapr
 
 ## 목차
 - 설치
@@ -7,7 +7,8 @@
   - Dapr Runtime 초기화
   - Dapr 제거
 - Helloword 예제
-  - Dapr API Helloworld 예제
+  - Dapr API Helloworld 1. 예제
+  - Dapr API Helloworld 2. 예제
   - Dapr Component Hellowrod 예제
 
 <br/>
@@ -145,7 +146,29 @@
 
 <br/>
 
-## [Dapr API Helloworld 예제](https://docs.dapr.io/getting-started/get-started-api/)
+## [Dapr API Helloworld 1. 예제](https://www.youtube.com/watch?v=oweMRGg_m8w&t)
+- 개요
+- 명령
+  ```
+  dapr run
+  포트 확인
+
+  POST http://localhost:포트/v1.0/state/statestore/
+  {
+    {
+      "key": "KeyValue",
+      "value": "Value"
+    }
+  }
+
+  GET http://localhost:포트/v1.0/state/statestore/키값
+  iwr http://localhost:포트/v1.0/state/statestore/키값
+  iwr http://localhost:포트/v1.0/state/statestore/키값 -Method Delete
+
+  Redis 컨테이너 값 확인 
+  ```
+
+## [Dapr API Helloworld 2. 예제](https://docs.dapr.io/getting-started/get-started-api/)
 - 개요
   - Redis에 Key & Value 데이터를 추가하고 조회한다.
     - 추가 : `http://localhost:3500/v1.0/state/statestore`, POST, JSON
