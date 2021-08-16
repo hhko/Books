@@ -74,3 +74,7 @@
    - [ ] [Adding distributed tracing instrumentation](https://docs.microsoft.com/ko-kr/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
    - [ ] [https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices](https://docs.microsoft.com/ko-kr/dotnet/core/testing/unit-testing-best-practices)
    - [ ] [Docker Series](https://code-maze.com/docker-series/)
+   - [ ] CDC(Change Data Capture) Platform
+     - [CDC & CDC Sink Platform 개발 1편 - CDC Platform 개발](https://hyperconnect.github.io/2021/01/11/cdc-platform.html)
+     - [CDC & CDC Sink Platform 개발 2편 - CDC Sink Platform 개발 및 CQRS 패턴의 적용](https://hyperconnect.github.io/2021/03/22/cdc-sink-platform.html)
+     - [CDC & CDC Sink Platform 개발 3편 - CDC Event Application Consuming 및 Event Stream Join의 구현](https://hyperconnect.github.io/2021/06/21/cdc-event-application-consuming.html)
