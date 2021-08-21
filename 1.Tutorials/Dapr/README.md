@@ -4,6 +4,16 @@ Dapr(Distributed Application Runtime) is **a portable, event-driven, runtime** f
 <br/>
 
 ## 참고 자료
+- [ ] [Microservices made easy with Dapr, a Microsoft open source project](https://www.youtube.com/watch?v=c199O5ln0tE) 
+  - dotnet new webapi -o myapp --no-http
+  - dotnet run
+    - localhost:5000/weatherforecast
+  - dapr run --app-id myapp --app-port 5000 --dapr-http-port 3500 dotnet run
+    - localhost:3500/v1.0/invoke/myapp/method/weatherforecast
+    - zipkin
+  - 코드 수정
+    - localhost:3500/v1.0/invoke/weather/method/weatherforecast
+    - redis
 - Getting Started - DonovanBrown
   - [x] [Youtube | Getting started with Dapr](https://www.youtube.com/watch?v=oweMRGg_m8w&list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y) 
     - 명령 : `dapr run`
