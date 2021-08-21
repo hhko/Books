@@ -1,4 +1,4 @@
-# Install Dapr
+# Dapr on WSL2(self-hosted, ubuntu) 설치
 
 ## 목차
 - 설치

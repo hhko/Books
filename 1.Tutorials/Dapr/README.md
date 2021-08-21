@@ -1,4 +1,4 @@
-# Dapr
+# Dapr 초심자 for C#
 Dapr(Distributed Application Runtime) is **a portable, event-driven, runtime** for building distributed applications across cloud and edge.
 
 <br/>
